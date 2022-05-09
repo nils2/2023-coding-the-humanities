@@ -1,0 +1,33 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Setup
+    chapters:
+    - file: myst-notebooks/setup
+  - caption: Week 0
+    chapters:
+    - file: myst-notebooks/0_HelloWorld
+  - caption: Week 1
+    chapters:
+    - file: myst-notebooks/1_Basics
+  - caption: Week 2
+    chapters:
+    - file: myst-notebooks/2_InputOutput
+  - caption: Week 3
+    chapters:
+    - file: myst-notebooks/3_ReadingAndWritingFiles
+  - caption: Week 4
+    chapters:
+    - file: myst-notebooks/4_PandasDataWrangling
+  - caption: Week 5
+    chapters:
+    - file: myst-notebooks/5_WorkingTweets
+  - caption: Week 6 (Optional)
+    chapters:
+    - file: myst-notebooks/6_WebScraping
+  - caption: Week 7 (Optional)
+    chapters:
+    - file: myst-notebooks/7_WorkingTexts

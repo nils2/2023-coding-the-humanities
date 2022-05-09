@@ -1,0 +1,2155 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Working with texts &#8212; 2023-coding-the-humanities</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Web Scraping and APIs" href="6_WebScraping.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">2023-coding-the-humanities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Coding the Humanities
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Setup
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setup.html">
+   Working environment setup
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 0
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0_HelloWorld.html">
+   Getting started
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 1
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Basics.html">
+   Python basics 1
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 2
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_InputOutput.html">
+   Python basics 2 + Input / Output
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 3
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_ReadingAndWritingFiles.html">
+   Reading and writing files, JSON
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 4
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_PandasDataWrangling.html">
+   Data Wrangling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 5
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_WorkingTweets.html">
+   Working with Tweets
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 6 (Optional)
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_WebScraping.html">
+   Web Scraping and APIs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 7 (Optional)
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Working with texts
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/myst-notebooks/7_WorkingTexts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/myst-notebooks/7_WorkingTexts.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/bloemj/2022-coding-the-humanities"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/bloemj/2022-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/7_WorkingTexts.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-standard-natural-language-processing-nlp-pipeline">
+   A Standard Natural Language Processing (NLP) Pipeline
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-we-hope-to-get-as-the-final-result">
+     What we hope to get as the final result…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-few-recommendations">
+     A Few Recommendations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nltk-python">
+       NLTK (Python)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stanford-corenlp-java">
+       Stanford CoreNLP (Java)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spacy-python">
+       spaCy (Python)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pattern-nl-en-python">
+       pattern (NL-EN/Python)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-dependent-choices">
+     Task-dependent choices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-note-on-terminology">
+       A note on terminology:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cleaning">
+       Cleaning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalization-and-filtering">
+       Normalization and filtering
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sentence-segmentation-nltk">
+   Sentence Segmentation (NLTK)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tokenizing-sentences">
+     Tokenizing sentences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tokenization-nltk">
+   Tokenization (NLTK)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stemming-and-lemmatization">
+   Stemming and Lemmatization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stemming">
+     Stemming
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lemmatization">
+     Lemmatization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-quick-and-dirty-comparison-of-stemmers-and-the-wn-lemmatizer">
+     A quick-and-dirty comparison of Stemmers and the WN Lemmatizer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-choose">
+       How to choose?
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pos-tagging">
+   PoS Tagging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-a-tagger">
+     Using a Tagger
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#available-taggers">
+       Available Taggers
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-stanford-pos-tagger">
+     Using the Stanford PoS Tagger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-stanford-pos-tagger-with-the-nltk-tag-stanford-module">
+     Using the Stanford POS Tagger with the nltk.tag.stanford module
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tagged-corpora">
+     Tagged Corpora
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-tagged-corpora">
+     Exploring Tagged  Corpora
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#let-s-find-the-most-frequent-nouns-of-each-noun-part-of-speech-type">
+       1. Let’s find the most frequent nouns of each noun part-of-speech type
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#suppose-we-re-studying-the-word-often-and-want-to-look-at-the-part-of-speech-tag-of-the-following-words">
+       2. Suppose we’re studying the word “
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         often
+        </span>
+       </code>
+       ” and want to look at the part-of-speech tag of the following words:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Working with texts</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-standard-natural-language-processing-nlp-pipeline">
+   A Standard Natural Language Processing (NLP) Pipeline
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-we-hope-to-get-as-the-final-result">
+     What we hope to get as the final result…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-few-recommendations">
+     A Few Recommendations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nltk-python">
+       NLTK (Python)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stanford-corenlp-java">
+       Stanford CoreNLP (Java)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#spacy-python">
+       spaCy (Python)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pattern-nl-en-python">
+       pattern (NL-EN/Python)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-dependent-choices">
+     Task-dependent choices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-note-on-terminology">
+       A note on terminology:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cleaning">
+       Cleaning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalization-and-filtering">
+       Normalization and filtering
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sentence-segmentation-nltk">
+   Sentence Segmentation (NLTK)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tokenizing-sentences">
+     Tokenizing sentences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tokenization-nltk">
+   Tokenization (NLTK)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stemming-and-lemmatization">
+   Stemming and Lemmatization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stemming">
+     Stemming
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lemmatization">
+     Lemmatization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-quick-and-dirty-comparison-of-stemmers-and-the-wn-lemmatizer">
+     A quick-and-dirty comparison of Stemmers and the WN Lemmatizer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-choose">
+       How to choose?
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pos-tagging">
+   PoS Tagging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-a-tagger">
+     Using a Tagger
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#available-taggers">
+       Available Taggers
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-stanford-pos-tagger">
+     Using the Stanford PoS Tagger
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-stanford-pos-tagger-with-the-nltk-tag-stanford-module">
+     Using the Stanford POS Tagger with the nltk.tag.stanford module
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tagged-corpora">
+     Tagged Corpora
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-tagged-corpora">
+     Exploring Tagged  Corpora
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#let-s-find-the-most-frequent-nouns-of-each-noun-part-of-speech-type">
+       1. Let’s find the most frequent nouns of each noun part-of-speech type
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#suppose-we-re-studying-the-word-often-and-want-to-look-at-the-part-of-speech-tag-of-the-following-words">
+       2. Suppose we’re studying the word “
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         often
+        </span>
+       </code>
+       ” and want to look at the part-of-speech tag of the following words:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-texts">
+<h1>Working with texts<a class="headerlink" href="#working-with-texts" title="Permalink to this headline">¶</a></h1>
+<p>Text Normalization and Pre-processing Pipelines.</p>
+<p>Let’s go back to our brief introduction to working with texts and expand upon it some more (see NOTEBOOK 5).</p>
+<blockquote>
+<div><p><strong>NLTK vs. spaCY</strong></p>
+<p>The code below gives examples of using <strong>NLTK</strong> (<a class="reference external" href="https://www.nltk.org/">https://www.nltk.org/</a>) modules on text. You may want to check out the relatively new <strong>spaCY</strong> (<a class="reference external" href="https://spacy.io/usage">https://spacy.io/usage</a>) package. Depending on the tasks you need to do and the language data that is available, this module offers a faster and more advanced, and more intuitive method to do Natural Language Processing on texts.</p>
+<p>The spaCY documentation pages (e.g. <a class="reference external" href="https://spacy.io/usage/linguistic-features">https://spacy.io/usage/linguistic-features</a>) provide a lot of examples.</p>
+</div></blockquote>
+<section id="a-standard-natural-language-processing-nlp-pipeline">
+<h2>A Standard Natural Language Processing (NLP) Pipeline<a class="headerlink" href="#a-standard-natural-language-processing-nlp-pipeline" title="Permalink to this headline">¶</a></h2>
+<img alt="pipeline" src="../_images/pipeline.png" />
+<hr class="docutils" />
+<section id="what-we-hope-to-get-as-the-final-result">
+<h3>What we hope to get as the final result…<a class="headerlink" href="#what-we-hope-to-get-as-the-final-result" title="Permalink to this headline">¶</a></h3>
+<p>Go on the Stanford CoreNLP <a class="reference external" href="http://corenlp.run/">online demo</a> and parse the following sentence:</p>
+<blockquote>
+<div><p>I think there is a world market for maybe five computers.</p>
+</div></blockquote>
+<p>(allegedly said by Thomas J. Watson, CEO of IBM, in 1943)</p>
+<p>This might be useful: <a class="reference external" href="https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html">list of Penn Treebank POS tags.</a></p>
+</section>
+<hr class="docutils" />
+<section id="a-few-recommendations">
+<h3>A Few Recommendations<a class="headerlink" href="#a-few-recommendations" title="Permalink to this headline">¶</a></h3>
+<section id="nltk-python">
+<h4><a class="reference external" href="http://www.nltk.org/">NLTK</a> (Python)<a class="headerlink" href="#nltk-python" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>has a variety of ready/easy-to-use implementations in several languages (some tools available for Dutch as well)</p></li>
+<li><p>has a variety of APIs for other packages (e.g. Stanford CoreNLP)</p></li>
+<li><p>lacks Information Extraction features (e.g. coreference resolution, relation extraction)</p></li>
+<li><p>several implementations are not state-of-the-art and/or are rather slow</p></li>
+</ul>
+</section>
+<section id="stanford-corenlp-java">
+<h4><a class="reference external" href="https://stanfordnlp.github.io/CoreNLP/">Stanford CoreNLP</a> (Java)<a class="headerlink" href="#stanford-corenlp-java" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>includes virtually any NLP tool</p></li>
+<li><p>basic distribution for English, but models for the following languages are available: Arabic, Chinese, French, German, and Spanish</p></li>
+<li><p>implementations are often State-of-the-Art (though some component may not be the most efficient)</p></li>
+<li><p>has Python wrappers</p></li>
+<li><p>needs a bit more technical skills than using NLTK</p></li>
+</ul>
+</section>
+<section id="spacy-python">
+<h4><a class="reference external" href="https://spacy.io">spaCy</a> (Python)<a class="headerlink" href="#spacy-python" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>industry-ready: scale, performance, getting things done, lacks some flexibility</p></li>
+<li><p>many models for many languages: English German French Spanish Portuguese Italian Dutch Greek</p></li>
+<li><p>implementations are often State-of-the-Art</p></li>
+<li><p>has Python wrappers and the very clean “spaCy pipeline” programming interface</p></li>
+<li><p>comes with many machine learning pre-trained models</p></li>
+</ul>
+</section>
+<section id="pattern-nl-en-python">
+<h4><a class="reference external" href="https://www.clips.uantwerpen.be/pages/pattern-nl">pattern</a> (NL-EN/Python)<a class="headerlink" href="#pattern-nl-en-python" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>toolbox for Dutch</p></li>
+<li><p>easy to use</p></li>
+<li><p>contains modules for PoS tagging, sentiment analysis and a WordNet interface</p></li>
+<li><p>many interesting datasets available</p></li>
+<li><p>available for <a class="reference external" href="https://www.clips.uantwerpen.be/pages/pattern-en">English</a> as well</p></li>
+</ul>
+<p>When to use what? Chose by yourself: <a class="reference external" href="https://spacy.io/usage/facts-figures">https://spacy.io/usage/facts-figures</a></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="task-dependent-choices">
+<h3>Task-dependent choices<a class="headerlink" href="#task-dependent-choices" title="Permalink to this headline">¶</a></h3>
+<section id="a-note-on-terminology">
+<h4>A note on terminology:<a class="headerlink" href="#a-note-on-terminology" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type</strong> = abstract ideal form of a sequence of characters (not necessarily a word in a language!)</p></li>
+<li><p><strong>Token</strong> = instantiation of a type in our corpus or document</p></li>
+</ul>
+<p>For example: <em>to be or not to be.</em></p>
+<ul class="simple">
+<li><p>6 tokens (to, be, or, not, to, be)</p></li>
+<li><p>4 types (to, be, or, not)</p></li>
+</ul>
+<p>The types coincide with the vocabulary.</p>
+<p>Note that not all types might be proper words nor have a related lemma in an external lexicon.</p>
+</section>
+<section id="cleaning">
+<h4>Cleaning<a class="headerlink" href="#cleaning" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>remove lists, tables, figure captions, page headers, etc.</p></li>
+<li><p>text from XML/HTML: remove unwanted code (e.g. head elements, boilerplates, comments, javascript code).</p></li>
+<li><p>text from PDF: remove noisy characters</p></li>
+<li><p>OCR errors are systematic: e.g. an “<code class="docutils literal notranslate"><span class="pre">m</span></code>” recognized as a “<code class="docutils literal notranslate"><span class="pre">rn</span></code>”, an “<code class="docutils literal notranslate"><span class="pre">e</span></code>” as a “<code class="docutils literal notranslate"><span class="pre">c</span></code>”, an “<code class="docutils literal notranslate"><span class="pre">l</span></code>” as a “<code class="docutils literal notranslate"><span class="pre">1</span></code>”, an “<code class="docutils literal notranslate"><span class="pre">f</span></code>” recognized as a “<code class="docutils literal notranslate"><span class="pre">s</span></code>”.</p></li>
+</ul>
+</section>
+<section id="normalization-and-filtering">
+<h4>Normalization and filtering<a class="headerlink" href="#normalization-and-filtering" title="Permalink to this headline">¶</a></h4>
+<p>Reducing the valid vocabulary space or even the text itself by filtering or standardizing. Standardizing might be considered as the task of creating equivalence classes of types. These decisions are application-dependent, might come from trial and error but should motivated in principle.</p>
+<ul class="simple">
+<li><p>lowercasing and abbreviations. If you want “<code class="docutils literal notranslate"><span class="pre">Train</span></code>” and “<code class="docutils literal notranslate"><span class="pre">train</span></code>” to be counted as token of the same type, you should <code class="docutils literal notranslate"><span class="pre">.lower()</span></code> the text, however case-folding may remove disciminative information, e.g., “<code class="docutils literal notranslate"><span class="pre">U.S.</span></code>” “<code class="docutils literal notranslate"><span class="pre">US</span></code>” vs. “<code class="docutils literal notranslate"><span class="pre">us</span></code>”.</p></li>
+<li><p>Hyphenation, accents, … (”<code class="docutils literal notranslate"><span class="pre">text-minig</span></code>”, “<code class="docutils literal notranslate"><span class="pre">textmining</span></code>”, “<code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">mining</span></code>”; “<code class="docutils literal notranslate"><span class="pre">cliche</span></code>”, “<code class="docutils literal notranslate"><span class="pre">cliché</span></code>”)</p></li>
+<li><p>Punctuation, digits, misspells, …</p></li>
+<li><p>Very frequent or very rare words.</p></li>
+<li><p>Stopwords (usually, these are very frequent words!).</p></li>
+<li><p>Specialized portions of the text (e.g., footnotes).</p></li>
+<li><p>Normalization can also be done via relations, e.g. considering “<code class="docutils literal notranslate"><span class="pre">car</span></code>” and “<code class="docutils literal notranslate"><span class="pre">automobile</span></code>” as synonyms. We can use <a class="reference external" href="https://wordnet.princeton.edu/">WordNet</a> for that.</p></li>
+</ul>
+<blockquote>
+<div><p>The example below assumes nltk is installed and set up. If you get a <code class="docutils literal notranslate"><span class="pre">LookupError</span></code> while running, it is likely nltk needs to download its materials first. Follow the error and run <code class="docutils literal notranslate"><span class="pre">nltk.download('stopwords')</span></code> in a cell once.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+
+<span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;french&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;french&#39;</span><span class="p">)))</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="sentence-segmentation-nltk">
+<h2>Sentence Segmentation (NLTK)<a class="headerlink" href="#sentence-segmentation-nltk" title="Permalink to this headline">¶</a></h2>
+<p>In its base form, a text is a stream of characters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="c1"># nltk.download(&#39;gutenberg&#39;) # Run if you get an LookupError</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">1010</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">1010</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">fileids</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">fileids</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first NLP processing step is <strong>the identification of the sentence boundaries</strong>:</p>
+<ul class="simple">
+<li><p>some pipelines perform the sentence splitting phase before the tokenization (e.g., NLTK)</p></li>
+<li><p>while other uses information about the tokens (e.g., CoreNLP) and/or about the parse tree (e.g., spaCy) to identify sentence boundaries</p></li>
+</ul>
+<p>The example below uses the built-in <a class="reference external" href="https://www.nltk.org/book/ch02.html">Gutenberg corpus</a> of NLTK.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Getting rid of newlines</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">800</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Getting rid of newlines</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">800</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternatively, the NLTK corpus sents() returns the tokenized words as well </span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">sents</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)[:</span><span class="mi">8</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Alternatively, the NLTK corpus sents() returns the tokenized words as well </span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">sents</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)[:</span><span class="mi">8</span><span class="p">]:</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>… but <strong>what is a sentence?</strong></p>
+<ul class="simple">
+<li><p>something ending with “<code class="docutils literal notranslate"><span class="pre">.</span></code>”, “<code class="docutils literal notranslate"><span class="pre">!</span></code>” or “<code class="docutils literal notranslate"><span class="pre">?</span></code>”, maybe?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[.?!]&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">[:</span><span class="mi">800</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">re</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[.?!]&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">[:</span><span class="mi">800</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;text&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;text&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not really, a period can be used also to denote:</p>
+<ul class="simple">
+<li><p>an abbreviation (47% of the periods in the Wall Street Journal denote abbreviations)</p></li>
+<li><p>decimal point</p></li>
+<li><p>ellipsis</p></li>
+<li><p>url or e-mail address…</p></li>
+</ul>
+<p>Question marks and exclamation marks can be used in:</p>
+<ul class="simple">
+<li><p>emoticons and slang</p></li>
+<li><p>computer code</p></li>
+<li><p>embedded quotations…</p></li>
+</ul>
+<p>Even if heuristic solutions are conceivable (e.g. CoreNLP)…</p>
+<ul class="simple">
+<li><p>e.g. <em>a period is not a sentence boundary if the preceding token is title-cased</em></p></li>
+</ul>
+<p>…the best option is to treat the sentence boundary identification as a <strong>binary classification problem</strong> (e.g. NLTK), in which possible features can be:</p>
+<ul class="simple">
+<li><p>case of the surrounding tokens</p></li>
+<li><p>length of the surrounding tokens</p></li>
+<li><p>lemma/type/form of the surrounding tokens</p></li>
+</ul>
+<section id="tokenizing-sentences">
+<h3>Tokenizing sentences<a class="headerlink" href="#tokenizing-sentences" title="Permalink to this headline">¶</a></h3>
+<p>NLTK has a built-in module for tokenizing sentences that takes into account these <em>features</em>. It returns a sentence-tokenized copy of a text, using NLTK’s recommended sentence tokenizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">1010</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">1010</span><span class="p">]):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>The accuracy of these classifiers can be as high as over 99%</p>
+<p>NLTK come packed with classifiers trained on 17 languages, among which Dutch:</p>
+<ul class="simple">
+<li><p>there are methods that allows you to train your own models as well. This can be useful if you want to process special texts like tweets or facebook messages…</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_dutch_email</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Uw abonnement op uw OV-chipkaart activeren.</span>
+<span class="s2">Het is belangrijk dat u het abonnement op uw OV-chipkaart activeert.</span>
+<span class="s2">Dit kunt u doen bij de NS-kaartautomaat of bij één van de overige ophaalpunten voor de OV-chipkaart. Kijk voor een overzicht van de ophaalpunten op www.ov-chipkaart.nl/adresvinder.</span>
+<span class="s2">Hoe activeert u uw abonnement bij de NS-kaartautomaat?</span>
+<span class="s2">Houd uw OV-chipkaart voor de kaartlezer rechts onder het scherm.</span>
+<span class="s2">Kies &#39;Ophalen bestelling&#39; en volg de aanwijzingen op het scherm.</span>
+<span class="s2">Voordat u aan uw reis begint dient er minimaal €10,- saldo op uw OV-chipkaart te staan.</span>
+<span class="s2">Vergeet niet in en uit te checken tijdens uw reis.</span>
+<span class="s2">Heeft u nog vragen?</span>
+<span class="s2">We helpen u graag verder. Kijk op www.ns.nl of stel uw vraag op het NS Serviceforum (www.ns.nl/forum). U kunt ook contact opnemen met NS Klantenservice via telefoonnummer 030 - 751 51 55 of via Twitter @NS_online. We staan dag en nacht voor u klaar.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To make it a bit harder for the tokenizer, present it as one paragraph without line breaks.</span>
+<span class="n">test_text</span> <span class="o">=</span> <span class="n">a_dutch_email</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">test_text</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;dutch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">test_text</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;dutch&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="tokenization-nltk">
+<h2>Tokenization (NLTK)<a class="headerlink" href="#tokenization-nltk" title="Permalink to this headline">¶</a></h2>
+<p>Tokenization is the task of splitting a string of characters into chunks of characters.</p>
+<p>It is a task that is usually tackled with rule-based or regex-based algorithms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It can be performed BEFORE sentence splitting</span>
+<span class="c1"># Here: one list of words (tokens) in the text</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="mi">226</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># It can be performed BEFORE sentence splitting</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Here: one list of words (tokens) in the text</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="mi">226</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It can be performed AFTER sentence splitting</span>
+<span class="c1"># Here: one list of lists (sentences) that contains words (tokens)</span>
+
+<span class="n">sents</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">sents</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sents</span><span class="p">[:</span><span class="mi">8</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># It can be performed AFTER sentence splitting</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Here: one list of lists (sentences) that contains words (tokens)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">sents</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">sents</span><span class="p">(</span><span class="s1">&#39;chesterton-thursday.txt&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sents</span><span class="p">[:</span><span class="mi">8</span><span class="p">]:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some of the most recurrent issues with <strong>Tokenization in English</strong>:</p>
+<ul class="simple">
+<li><p>contractions: <em>I’m</em>, <em>isn’t</em>, <em>Gianluca’s</em></p></li>
+<li><p>emoticons: <em>:)</em>, <em>;-)</em></p></li>
+<li><p>proper names: <em>J.K. Rowling</em>, <em>F.B.I.</em>, <em>O’Neill</em></p></li>
+<li><p>hyphenation can be used in many ways:</p>
+<ul>
+<li><p>single word: <em>e-mail</em>, <em>co-operation</em></p></li>
+<li><p>how many words? <em>so-called</em>, <em>pro-gun</em></p></li>
+<li><p>grouping of words for non-strictly-linguistic purposes: <em>take-it-or-leave</em></p></li>
+</ul>
+</li>
+<li><p>multi word expressions (MWE) and collocations:</p>
+<ul>
+<li><p>phrasal verbs: <em>give up</em>, <em>work out</em>, <em>move in</em></p></li>
+<li><p>multi-token proper names: <em>New York</em>, <em>Las Vegas</em></p></li>
+<li><p>compound nominals: <em>car park</em>, <em>attorney general</em>, <em>part of speech</em></p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+</ul>
+<p>The complexity of this task is also <strong>language-dependent</strong>:</p>
+<ul class="simple">
+<li><p>e.g. compounds in German: <em>Donaudampfschifffahrtselektrizitätenhauptbetriebswerkbauunterbeamtengesellschaft</em> (i.e. “Association for subordinate officials of the head office management of the Danube steamboat electrical services”)</p></li>
+<li><p>Chinese is written without spaces between words: 天花 (“small pot”) vs. 天 (“sky”) and 花 (“flower”).</p></li>
+</ul>
+<p>Simplest (but suboptimal) solution: <strong>segment around space characters</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;text&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are many issues with this solution, among which the production of tokens such as <code class="docutils literal notranslate"><span class="pre">'plume.'</span></code>, <code class="docutils literal notranslate"><span class="pre">'thus;'</span></code> and <code class="docutils literal notranslate"><span class="pre">'were--our'</span></code></p>
+<p>NLTK’s recommended word tokenizer is the Penn <code class="docutils literal notranslate"><span class="pre">nltk.tokenize.TreebankWordTokenizer().tokenize()</span></code>, that can be called in many ways, among which the easier is by using the <code class="docutils literal notranslate"><span class="pre">nltk.tokenize.word_tokenize()</span></code> wrapper:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the same as nltk.tokenize.TreebankWordTokenizer().tokenize(text[:1010])</span>
+
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># This is the same as nltk.tokenize.TreebankWordTokenizer().tokenize(text[:1010])</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>NLTK offers alternative word tokenizer, that may be more appropriate according to the applications you are developing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk_text</span> <span class="o">=</span> <span class="s1">&#39;That U.S.A. poster-print doesn</span><span class="se">\&#39;</span><span class="s1">t cost $12.40...&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk_text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;That&#39;, &#39;U.S.A.&#39;, &#39;poster-print&#39;, &quot;doesn&#39;t&quot;, &#39;cost&#39;, &#39;$12.40...&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk_text</span> <span class="o">=</span> <span class="s1">&#39;That U.S.A. poster-print doesn</span><span class="se">\&#39;</span><span class="s1">t cost $12.40...&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">nltk_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">nltk_text</span> <span class="o">=</span> <span class="s1">&#39;That U.S.A. poster-print doesn</span><span class="se">\&#39;</span><span class="s1">t cost $12.40...&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">nltk_text</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nltk.tokenize.wordpunct_tokenize splits all punctuations into separate tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">wordpunct_tokenize</span><span class="p">(</span><span class="n">nltk_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># nltk.tokenize.wordpunct_tokenize splits all punctuations into separate tokens</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">wordpunct_tokenize</span><span class="p">(</span><span class="n">nltk_text</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nltk.regexp_tokenize() allows you to build a customized tokenizer by specifying a regex pattern</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;(?x)    # set flag to allow verbose regexps</span>
+<span class="s1">(?:[A-Z]\.)+          # abbreviations, e.g. U.S.A.</span>
+<span class="s1">|\w+(?:-\w+)*         # words with optional internal hyphens</span>
+<span class="s1">|\$?\d+(?:\.\d+)?%?   # currency and percentages, e.g. $12.40, 82%</span>
+<span class="s1">|\.\.\.               # ellipsis</span>
+<span class="s1">|[][.,;&quot;\&#39;?():-_`]    # these are separate tokens</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">regexp_tokenize</span><span class="p">(</span><span class="n">nltk_text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># nltk.regexp_tokenize() allows you to build a customized tokenizer by specifying a regex pattern</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;(?x)    # set flag to allow verbose regexps</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="s1"> (?:[A-Z]\.)+          # abbreviations, e.g. U.S.A.</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="s1"> |\w+(?:-\w+)*         # words with optional internal hyphens</span>
+<span class="s1">   (...)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="s1"> |[][.,;&quot;\&#39;?():-_`]    # these are separate tokens</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span><span class="s1"> &#39;&#39;&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">nltk</span><span class="o">.</span><span class="n">regexp_tokenize</span><span class="p">(</span><span class="n">nltk_text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="stemming-and-lemmatization">
+<h2>Stemming and Lemmatization<a class="headerlink" href="#stemming-and-lemmatization" title="Permalink to this headline">¶</a></h2>
+<p>The goal of both stemming and lemmatization is to reduce inflectional forms (e.g. <em>dreaming</em>, <em>dreamed</em>) and sometimes derivationally related forms of a word to a common “base form” (e.g. <em>eat</em>).</p>
+<p><strong>Stemming</strong> <em>targets the stem, or the part of a word which remains stable to inflectional manipulations. E.g., “eats” -&gt; “eat”.</em></p>
+<p><strong>Lemmatization</strong> <em>targets the lemma, or the canonical dictionary key associated with the word. E.g., “is” -&gt; “be”.</em></p>
+<section id="stemming">
+<h3>Stemming<a class="headerlink" href="#stemming" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Stemming in practice usually refers to a <strong>crude heuristic</strong> process that (usually) removes the inflectional <strong>suffixes</strong> of a word</p></li>
+<li><p>The result of stemming <strong>might not be an actual word</strong></p></li>
+<li><p>Stemmers are very fast and do not require PoS information</p></li>
+</ul>
+<p>NLTK offers several algorithms, among which the most used are:</p>
+<ul class="simple">
+<li><p>the <a class="reference external" href="https://tartarus.org/martin/PorterStemmer/">Porter</a> Stemmer: the oldest algorithm (1979), it is regex-based, it is still the most used even if more computationally intensive</p></li>
+<li><p>the algorithm consists of 5 phases of word reductions, applied sequentially as a cascade.</p></li>
+<li><p>Example of rules in phase 1:</p>
+<ul>
+<li><p>SSES -&gt; SS (<em>caresses -&gt; caress</em>)</p></li>
+<li><p>IES -&gt; I (<em>ponies -&gt; poni</em>)</p></li>
+<li><p>S -&gt;  (<em>cats -&gt; cat</em>)</p></li>
+</ul>
+</li>
+<li><p>Example of rules in phase 5 (measuring if a token could stand by itself):</p>
+<ul>
+<li><p>EMENT -&gt;  (would reduce <em>replacement</em> to <em>replac</em>, but leave <em>cement</em> as cement because “<code class="docutils literal notranslate"><span class="pre">c</span></code>” alone is too short)</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;unfriendliness&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;unfriendliness&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;cements&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;cements&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>the <a class="reference external" href="http://www.comp.lancs.ac.uk/computing/research/stemming/">Lancaster</a> Stemmers: the most aggressive</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># aggressive</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;unfriendliness&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># aggressive</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;unfriendliness&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;cements&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;cements&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sometimes works better than the Porter Stemmer</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;happiness&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;happiness&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;happiness&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># sometimes works better than the Porter Stemmer</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;happiness&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;happiness&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;happiness&quot;</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="http://snowballstem.org/">Snowball</a> is a language for creating stemmers, and is available in many languages among which Dutch:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="o">.</span><span class="n">languages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="o">.</span><span class="n">languages</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Wanna see a demo on how it works in dutch? Try <code class="docutils literal notranslate"><span class="pre">nltk.stem.snowball.demo()</span></code></p>
+</div></blockquote>
+<p>As a general rule, the SnowballStemmer for English (a.k.a. Porter2), works better than the original Porter stemmer</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;generously&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;generously&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;generously&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;generously&quot;</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lemmatization">
+<h3>Lemmatization<a class="headerlink" href="#lemmatization" title="Permalink to this headline">¶</a></h3>
+<p>Lemmatizers use a <strong>vocabulary</strong> and <strong>morphological information</strong> to apply a more articulated set of rules in order to return <strong>actual lemmas</strong> (a.k.a. dictionary entries)</p>
+<blockquote>
+<div><p>Again, download any missing NLTK modules if you get a <code class="docutils literal notranslate"><span class="pre">LookupError</span></code>.</p>
+</div></blockquote>
+<p>The WordNet lemmatizer removes the affixes of a token only if the resulting lemma is in WordNet</p>
+<ul class="simple">
+<li><p>It is based on the WordNet <code class="docutils literal notranslate"><span class="pre">morphy</span></code> function</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Irregularities are easier to handle with a lemmatizer (if the word is in the vocabulary)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;women&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">29</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Irregularities are easier to handle with a lemmatizer (if the word is in the vocabulary)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;women&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># But it doesn&#39;t really handle some inflected forms ...</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;flying&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">30</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># But it doesn&#39;t really handle some inflected forms ...</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;flying&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ... but it is a PoS tagging issue, really. Let&#39;s tell it that we have the verb</span>
+<span class="n">verb</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;flying&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s2">&quot;v&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verb&quot;</span><span class="p">,</span> <span class="n">verb</span><span class="p">)</span>
+
+<span class="c1"># Compare</span>
+<span class="n">noun</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;flying&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Noun&quot;</span><span class="p">,</span> <span class="n">noun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># ... but it is a PoS tagging issue, really. Let&#39;s tell it that we have the verb</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">verb</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;flying&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s2">&quot;v&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verb&quot;</span><span class="p">,</span> <span class="n">verb</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Compare</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-quick-and-dirty-comparison-of-stemmers-and-the-wn-lemmatizer">
+<h3>A quick-and-dirty comparison of Stemmers and the WN Lemmatizer<a class="headerlink" href="#a-quick-and-dirty-comparison-of-stemmers-and-the-wn-lemmatizer" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stemmers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> 
+    <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span>
+    <span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> 
+    <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span>
+<span class="p">]</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;caresses&#39;</span><span class="p">,</span> <span class="s1">&#39;flies&#39;</span><span class="p">,</span> <span class="s1">&#39;flying&#39;</span><span class="p">,</span> <span class="s1">&#39;mules&#39;</span><span class="p">,</span> <span class="s1">&#39;denied&#39;</span><span class="p">,</span> <span class="s1">&#39;agreed&#39;</span><span class="p">,</span> <span class="s1">&#39;humbled&#39;</span><span class="p">,</span> <span class="s1">&#39;sized&#39;</span><span class="p">,</span>  <span class="s1">&#39;meeting&#39;</span><span class="p">,</span> <span class="s1">&#39;stating&#39;</span><span class="p">,</span> 
+         <span class="s1">&#39;itemization&#39;</span><span class="p">,</span> <span class="s1">&#39;sensational&#39;</span><span class="p">,</span> <span class="s1">&#39;traditional&#39;</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">,</span> <span class="s1">&#39;colonizer&#39;</span><span class="p">,</span> <span class="s1">&#39;provision&#39;</span><span class="p">,</span> <span class="s1">&#39;cement&#39;</span><span class="p">,</span> <span class="s1">&#39;women&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;INPUT&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Porter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Snowball&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Lancaster&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;WN Lemmatizer&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">89</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">stemmer_function</span> <span class="ow">in</span> <span class="n">stemmers</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">stemmer_function</span><span class="p">(</span><span class="n">word</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">32</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">stemmers</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">nltk</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">snowball</span><span class="o">.</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">nltk</span><span class="o">.</span><span class="n">LancasterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">nltk</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;caresses&#39;</span><span class="p">,</span> <span class="s1">&#39;flies&#39;</span><span class="p">,</span> <span class="s1">&#39;flying&#39;</span><span class="p">,</span> <span class="s1">&#39;mules&#39;</span><span class="p">,</span> <span class="s1">&#39;denied&#39;</span><span class="p">,</span> <span class="s1">&#39;agreed&#39;</span><span class="p">,</span> <span class="s1">&#39;humbled&#39;</span><span class="p">,</span> <span class="s1">&#39;sized&#39;</span><span class="p">,</span>  <span class="s1">&#39;meeting&#39;</span><span class="p">,</span> <span class="s1">&#39;stating&#39;</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span>          <span class="s1">&#39;itemization&#39;</span><span class="p">,</span> <span class="s1">&#39;sensational&#39;</span><span class="p">,</span> <span class="s1">&#39;traditional&#39;</span><span class="p">,</span> <span class="s1">&#39;reference&#39;</span><span class="p">,</span> <span class="s1">&#39;colonizer&#39;</span><span class="p">,</span> <span class="s1">&#39;provision&#39;</span><span class="p">,</span> <span class="s1">&#39;cement&#39;</span><span class="p">,</span> <span class="s1">&#39;women&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;INPUT&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Porter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Snowball&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Lancaster&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;WN Lemmatizer&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<section id="how-to-choose">
+<h4>How to choose?<a class="headerlink" href="#how-to-choose" title="Permalink to this headline">¶</a></h4>
+<p>As a rule of thumb:</p>
+<ul class="simple">
+<li><p>if you need to work with <strong>real words</strong>, use a lemmatizer (PoS information helps a lot)</p></li>
+<li><p>if you need <strong>speed</strong>, choose a stemmer</p></li>
+<li><p>if want to link morphological derivations (e.g. “dreamable”) to their bases, a stemmer can be a quick-and-dirty solution</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pos-tagging">
+<h2>PoS Tagging<a class="headerlink" href="#pos-tagging" title="Permalink to this headline">¶</a></h2>
+<p>The proccess of automatically classifying words into their <strong>lexical categories</strong></p>
+<ul class="simple">
+<li><p>lexical categories are also called words classes, parts-of-speech, lexical tags…</p></li>
+</ul>
+<p>Lexical categories are divided into two main groups:</p>
+<ul class="simple">
+<li><p><strong>open word classes</strong> which constantly acquire new members:</p>
+<ul>
+<li><p>nouns, verbs, adjectives and adverbs</p></li>
+</ul>
+</li>
+<li><p><strong>closed class</strong> when their inventory does not change over time (or much less so):</p>
+<ul>
+<li><p>e.g., pronouns, determiners, prepositions, conjunctions, auxiliary and modal verbs, numerals…</p></li>
+</ul>
+</li>
+</ul>
+<p>The collection of PoS tags used for a particular task is known as a <strong>tagset</strong></p>
+<ul class="simple">
+<li><p>The most common English tagset is the <a class="reference external" href="https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html"><strong>Penn Treebank</strong></a> one, containing the following tags:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You might need to do this to download the related resource</span>
+<span class="c1"># nltk.download(&#39;tagsets&#39;)</span>
+<span class="c1"># nltk.download(&#39;universal_tagset&#39;)</span>
+<span class="c1"># nltk.download(&#39;brown&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some distinctions are quite <strong>hard for both humans and machines</strong> :</p>
+<ul class="simple">
+<li><p>preposition (IN), particle (RP) or adverb (RB)?</p>
+<ul>
+<li><p>You’ll never get <em>around</em>/RP to watching all those movies</p></li>
+<li><p>Let’s go <em>around</em>/IN the corner</p></li>
+<li><p>It costs <em>around</em>/RB 500 bucks</p></li>
+</ul>
+</li>
+<li><p>past participle (VBN) or adjective (JJ)?</p>
+<ul>
+<li><p>What the teacher said, has <em>interested</em>/VBN the student</p></li>
+<li><p>The student was <em>interested</em>/?? in what the teacher was saying</p></li>
+<li><p>The <em>interested</em>/JJ student was listening to the teacher</p></li>
+</ul>
+</li>
+<li><p>sometimes nouns can act like adjectives (i.e. they modify nouns):</p>
+<ul>
+<li><p><em>science</em> teacher</p></li>
+<li><p><em>government road accident research</em> centre</p></li>
+</ul>
+</li>
+</ul>
+<p>Insecure about a <strong>specific tag</strong>? Ask NLTK!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">(</span><span class="s2">&quot;JJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">(</span><span class="s2">&quot;JJ&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a group of tags</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">(</span><span class="s2">&quot;NN*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">36</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># a group of tags</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">upenn_tagset</span><span class="p">(</span><span class="s2">&quot;NN*&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Other tagsets</strong> are available in NLTK and they can be corpus specific. For instance, the tags used in the <strong>Brown Corpus</strong>:</p>
+<blockquote>
+<div><p>The Brown Corpus was the first million-word electronic corpus of English, created in 1961 at Brown University. This corpus contains text from 500 sources, and the sources have been categorized by genre, such as news, editorial, and so on. 1.1 gives an example of each genre (for a complete list, see <a class="reference external" href="http://icame.uib.no/brown/bcm-los.html">http://icame.uib.no/brown/bcm-los.html</a>).</p>
+</div></blockquote>
+<p>From: <a class="reference external" href="https://www.nltk.org/book/ch02.html">https://www.nltk.org/book/ch02.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Brown corpus tagset</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">brown_tagset</span><span class="p">(</span><span class="s2">&quot;NN*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">37</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Brown corpus tagset</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">nltk</span><span class="o">.</span><span class="n">help</span><span class="o">.</span><span class="n">brown_tagset</span><span class="p">(</span><span class="s2">&quot;NN*&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<section id="using-a-tagger">
+<h3>Using a Tagger<a class="headerlink" href="#using-a-tagger" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nltk.pos_tag()</span></code> method allows you to launch the default NLTK pos tagger model on a <strong>tokenized text</strong> (i.e. on a list of words):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;And now for something completely different&quot;</span><span class="p">)</span>
+<span class="c1"># text = nltk.word_tokenize(&quot;I&#39;m going to my place.&quot;)</span>
+
+<span class="c1"># Gives back a list of tuples, in which the first element is the token, and the second the PoS-tag</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">38</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;And now for something completely different&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># text = nltk.word_tokenize(&quot;I&#39;m going to my place.&quot;)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Gives back a list of tuples, in which the first element is the token, and the second the PoS-tag</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>PoS-tagging requires a certain amount of disambiguation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the two classifications of the type &quot;refuse&quot;</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;They refuse to permit us to obtain the refuse permit&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">39</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Compare the two classifications of the type &quot;refuse&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;They refuse to permit us to obtain the refuse permit&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">nltk.pos_tag_sents()</span></code> method is recommened for efficient tagging of more than one sentence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tok_sents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;And now for something completely different&quot;</span><span class="p">),</span>
+    <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;They refuse to permit us to obtain the refuse permit&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag_sents</span><span class="p">(</span><span class="n">tok_sents</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">40</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">tok_sents</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;And now for something completely different&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;They refuse to permit us to obtain the refuse permit&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag_sents</span><span class="p">(</span><span class="n">tok_sents</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other tagsets can be selected by using the <code class="docutils literal notranslate"><span class="pre">tagset</span></code> parameter.</p>
+<ul class="simple">
+<li><p>For instance, to use the following <strong>Universal tagset</strong> proposed by <a class="reference external" href="https://arxiv.org/abs/1104.2086">Petrov et al (2011)</a>:</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>tag</p></th>
+<th class="text-align:left head"><p>meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>VERB</p></td>
+<td class="text-align:left"><p>verbs (all tenses and modes)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>NOUN</p></td>
+<td class="text-align:left"><p>nouns (common and proper)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>PRON</p></td>
+<td class="text-align:left"><p>pronouns</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>ADJ</p></td>
+<td class="text-align:left"><p>adjectives</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ADV</p></td>
+<td class="text-align:left"><p>adverbs</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>ADP</p></td>
+<td class="text-align:left"><p>adpositions (prepositions and postpositions)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>CONJ</p></td>
+<td class="text-align:left"><p>conjunctions</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>DET</p></td>
+<td class="text-align:left"><p>determiners</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>NUM</p></td>
+<td class="text-align:left"><p>cardinal numbers</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>PRT</p></td>
+<td class="text-align:left"><p>particles or other function words</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>X</p></td>
+<td class="text-align:left"><p>other: foreign words, typos, abbreviations</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>.</p></td>
+<td class="text-align:left"><p>punctuation</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;They refuse to permit us to obtain the refuse permit&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s2">&quot;universal&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">41</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">text</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="s2">&quot;They refuse to permit us to obtain the refuse permit&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s2">&quot;universal&quot;</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<section id="available-taggers">
+<h4>Available Taggers<a class="headerlink" href="#available-taggers" title="Permalink to this headline">¶</a></h4>
+<p>The default pos tagger model used by NLTK is the <a class="reference external" href="https://github.com/sloria/textblob-aptagger">Perceptron</a> tagger.</p>
+<p>NLTK provides other pos taggers among which:</p>
+<ul class="simple">
+<li><p>the <a class="reference external" href="http://www.coli.uni-saarland.de/~thorsten/tnt/">TnT</a> tagger: <code class="docutils literal notranslate"><span class="pre">nltk.tag.tnt.TnT()</span></code></p></li>
+<li><p>the <a class="reference external" href="http://www.nltk.org/_modules/nltk/tag/crf.html">CRF</a> tagger: <code class="docutils literal notranslate"><span class="pre">nltk.tag.CRFTagger()</span></code></p></li>
+<li><p>various simple <a class="reference external" href="http://www.nltk.org/book/ch05.html#general-n-gram-tagging">N-gram</a> taggers:  <code class="docutils literal notranslate"><span class="pre">nltk.tag.UnigramTagger()</span></code>, <code class="docutils literal notranslate"><span class="pre">nltk.tag.BigramTagger()</span></code>, <code class="docutils literal notranslate"><span class="pre">nltk.tag.TrigramTagger()</span></code></p></li>
+<li><p>a <a class="reference external" href="http://www.nltk.org/book/ch05.html#the-regular-expression-tagger">regex-based</a> tagger <code class="docutils literal notranslate"><span class="pre">nltk.tag.sequential.RegexpTagger()</span></code></p></li>
+<li><p>a tagger that assign always the same tag ot each token: <code class="docutils literal notranslate"><span class="pre">nltk.tag.DefaultTagger()</span></code>, that can be used as a <a class="reference external" href="http://www.nltk.org/book/ch05.html#combining-taggers">backoff</a> strategy</p></li>
+</ul>
+</section>
+</section>
+<section id="using-the-stanford-pos-tagger">
+<h3>Using the Stanford PoS Tagger<a class="headerlink" href="#using-the-stanford-pos-tagger" title="Permalink to this headline">¶</a></h3>
+<p>NLTK provides interfaces to three tools of the Stanford CoreNLP suite:</p>
+<ul class="simple">
+<li><p>the Stanford Log-linear Part-Of-Speech Tagger</p></li>
+<li><p>the Stanford Parser</p></li>
+<li><p>the Stanford Named Entity Recognizer (NER)</p></li>
+</ul>
+<p>The Stanford POS Tagger can be download from the <a class="reference external" href="https://nlp.stanford.edu/software/tagger.html#Download">download section</a> of the official site. Two versions are available:</p>
+<ul class="simple">
+<li><p>the basic English Stanford Tagger [25 MB]</p></li>
+<li><p>the full Stanford Tagger [129 MB]</p></li>
+</ul>
+<p>Both versions contain a lot of pos tagger models, you can find more infos in <code class="docutils literal notranslate"><span class="pre">models/README-Models.txt</span></code></p>
+</section>
+<section id="using-the-stanford-pos-tagger-with-the-nltk-tag-stanford-module">
+<h3>Using the Stanford POS Tagger with the nltk.tag.stanford module<a class="headerlink" href="#using-the-stanford-pos-tagger-with-the-nltk-tag-stanford-module" title="Permalink to this headline">¶</a></h3>
+<p>Download one of the two Stanford packages above (the basic 25 MB one will do for now). Extract to your notebook working directory, and create an instance of <code class="docutils literal notranslate"><span class="pre">StanfordPOSTagger</span></code> with path arguments to a language model (here: ‘english-bidirectional-distsim.tagger’) and the Stanford tagger jar file (here: ‘stanford-postagger-3.9.1.jar’). Using the <code class="docutils literal notranslate"><span class="pre">tag</span></code> method, we can now apply POS tags to a (split) string.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tag</span> <span class="kn">import</span> <span class="n">StanfordPOSTagger</span>
+
+<span class="n">st</span> <span class="o">=</span> <span class="n">StanfordPOSTagger</span><span class="p">(</span>
+    <span class="s1">&#39;./stanford-postagger-2018-02-27/models/english-bidirectional-distsim.tagger&#39;</span><span class="p">,</span>
+    <span class="n">path_to_jar</span><span class="o">=</span><span class="s1">&#39;./stanford-postagger-2018-02-27/stanford-postagger-3.9.1.jar&#39;</span>
+<span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s1">&#39;What is the airspeed of an unladen swallow ?&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Suggested Readings</strong></p>
+<p>A nice tutorial on how NLTK taggers can be evaluated is available on <a class="reference external" href="https://natemccoy.github.io/2016/10/27/evaluatingnltktaggerstutorial.html">Natemccoy’s Blog</a></p>
+</div></blockquote>
+</section>
+<section id="tagged-corpora">
+<h3>Tagged Corpora<a class="headerlink" href="#tagged-corpora" title="Permalink to this headline">¶</a></h3>
+<p>Several of the corpora included with NLTK have been tagged for their part-of-speech.</p>
+<p>Whenever a corpus contains tagged text, the NLTK corpus interface will have a <code class="docutils literal notranslate"><span class="pre">tagged_words()</span></code> method that will print <code class="docutils literal notranslate"><span class="pre">(token,</span> <span class="pre">tag)</span></code> tuples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">treebank</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">()[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">treebank</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">()[:</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>A related method is <code class="docutils literal notranslate"><span class="pre">tagged_sents()</span></code>, that will retain the sentence structure of the text:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">treebank</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">43</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">treebank</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">()[:</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not all corpora employ the same tagset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">()[:</span><span class="mi">68</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">44</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">()[:</span><span class="mi">68</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Things can be made comparable by using the built-in <a class="reference external" href="https://github.com/slavpetrov/universal-pos-tags">mapping</a> to the Universal Tagset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">tagset</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">)[:</span><span class="mi">68</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">45</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">tagset</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">)[:</span><span class="mi">68</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">treebank</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">tagset</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">)[:</span><span class="mi">58</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">46</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">treebank</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">tagset</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">)[:</span><span class="mi">58</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exploring-tagged-corpora">
+<h3>Exploring Tagged  Corpora<a class="headerlink" href="#exploring-tagged-corpora" title="Permalink to this headline">¶</a></h3>
+<section id="let-s-find-the-most-frequent-nouns-of-each-noun-part-of-speech-type">
+<h4>1. Let’s find the most frequent nouns of each noun part-of-speech type<a class="headerlink" href="#let-s-find-the-most-frequent-nouns-of-each-noun-part-of-speech-type" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>nltk.ConditionalFreqDist
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Object `nltk.ConditionalFreqDist` not found.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_tags</span><span class="p">(</span><span class="n">tag_prefix</span><span class="p">,</span> <span class="n">tagged_text</span><span class="p">):</span>
+    
+    <span class="c1"># Generator comprehension (cf. list comprehension)</span>
+    <span class="n">taglist</span> <span class="o">=</span> <span class="p">((</span><span class="n">tag</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tagged_text</span> <span class="k">if</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">tag_prefix</span><span class="p">))</span>
+    
+    <span class="n">cfd</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">ConditionalFreqDist</span><span class="p">(</span><span class="n">taglist</span><span class="p">)</span>
+    
+    <span class="n">tagdict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">tag</span><span class="p">,</span> <span class="n">cfd</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">cfd</span><span class="o">.</span><span class="n">conditions</span><span class="p">())</span>
+    
+    <span class="k">return</span> <span class="n">tagdict</span>
+
+
+<span class="n">tagdict</span> <span class="o">=</span> <span class="n">find_tags</span><span class="p">(</span><span class="s1">&#39;NN&#39;</span><span class="p">,</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s1">&#39;news&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tagdict</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">tagdict</span><span class="p">[</span><span class="n">tag</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">48</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">      8     tagdict = dict((tag, cfd[tag].most_common(5)) for tag</span> in <span class="ni">cfd.conditions</span><span class="nt">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="k">return</span> <span class="n">tagdict</span>
+<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">tagdict</span> <span class="o">=</span> <span class="n">find_tags</span><span class="p">(</span><span class="s1">&#39;NN&#39;</span><span class="p">,</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s1">&#39;news&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tagdict</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="nb">print</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">tagdict</span><span class="p">[</span><span class="n">tag</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="suppose-we-re-studying-the-word-often-and-want-to-look-at-the-part-of-speech-tag-of-the-following-words">
+<h4>2. Suppose we’re studying the word “<code class="docutils literal notranslate"><span class="pre">often</span></code>” and want to look at the part-of-speech tag of the following words:<a class="headerlink" href="#suppose-we-re-studying-the-word-often-and-want-to-look-at-the-part-of-speech-tag-of-the-following-words" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brown_lrnd_tagged</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s1">&#39;learned&#39;</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">)</span>
+
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">bigrams</span><span class="p">(</span><span class="n">brown_lrnd_tagged</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;often&#39;</span><span class="p">]</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span><span class="o">.</span><span class="n">tabulate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">49</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">brown_lrnd_tagged</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">brown</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="s1">&#39;learned&#39;</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s1">&#39;universal&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">bigrams</span><span class="p">(</span><span class="n">brown_lrnd_tagged</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;often&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">nltk</span><span class="o">.</span><span class="n">FreqDist</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span><span class="o">.</span><span class="n">tabulate</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;nltk&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use the word frequencies in the Brown corpus to:</p>
+<ul>
+<li><p>print the top 50 most frequent unigrams and bigrams (together with their frequencies). A bigram is a group of two subsequent words, e.g., “this is good”: “this is”, “is good”. Check the <code class="docutils literal notranslate"><span class="pre">nltk.bigrams()</span></code> function</p></li>
+<li><p>plot them too</p></li>
+</ul>
+</li>
+<li><p>Lemmatize the Brown corpus and use the lemma frequencies to plot the 50 most frequent unigrams and bigrams. So, the same analysis as in the previous exercise, but with lemma frequencies this time.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./myst-notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="6_WebScraping.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Web Scraping and APIs</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Joy Crosbie, Nils Peters<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
