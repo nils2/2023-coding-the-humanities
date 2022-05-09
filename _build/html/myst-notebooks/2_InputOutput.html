@@ -8,8 +8,9 @@
 
     <title>Python basics 2 + Input / Output &#8212; 2023-coding-the-humanities</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,12 +20,8 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,7 +29,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -40,21 +38,20 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reading and writing files, JSON" href="3_ReadingAndWritingFiles.html" />
@@ -66,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +107,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to Coding the Humanities
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Coding the Humanities
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Setup
  </span>
@@ -186,130 +199,228 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Week 6 (Optional)
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="6_WebScraping.html">
-   Web Scraping and APIs
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Week 7 (Optional)
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="7_WorkingTexts.html">
-   Working with texts
-  </a>
- </li>
-</ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/myst-notebooks/2_InputOutput.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/myst-notebooks/2_InputOutput.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/bloemj/2022-coding-the-humanities"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/bloemj/2022-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/2_InputOutput.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/nils2/2023-coding-the-humanities/blob/master/myst-notebooks/2_InputOutput.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/2_InputOutput.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/myst-notebooks/2_InputOutput.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/myst-notebooks/2_InputOutput.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Python basics 2 + Input / Output
@@ -560,12 +671,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Python basics 2 + Input / Output</h1>
@@ -832,20 +942,21 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="python-basics-2-input-output">
-<h1>Python basics 2 + Input / Output<a class="headerlink" href="#python-basics-2-input-output" title="Permalink to this headline">¶</a></h1>
+<h1>Python basics 2 + Input / Output<a class="headerlink" href="#python-basics-2-input-output" title="Permalink to this headline">#</a></h1>
 <p>This notebook contains more basics of Python. Use it as a reference whenever needed.</p>
 <section id="python-syntax">
-<h2>Python Syntax<a class="headerlink" href="#python-syntax" title="Permalink to this headline">¶</a></h2>
+<h2>Python Syntax<a class="headerlink" href="#python-syntax" title="Permalink to this headline">#</a></h2>
 <section id="the-significant-whitespace">
-<h3>The Significant Whitespace<a class="headerlink" href="#the-significant-whitespace" title="Permalink to this headline">¶</a></h3>
+<h3>The Significant Whitespace<a class="headerlink" href="#the-significant-whitespace" title="Permalink to this headline">#</a></h3>
 <p>Most program languages use characters (e.g. <code class="docutils literal notranslate"><span class="pre">{...}</span></code>) or keywords (e.g. <code class="docutils literal notranslate"><span class="pre">begin</span> <span class="pre">...</span> <span class="pre">end</span></code>) to delimitate blocks of codes. But, when writing Python code, you rely on <strong>indentation</strong> to structure your programs.</p>
 <p>All programming languages allow you to indent (and you should!), but in Python you <strong>have to.</strong> Otherwise, you’ll receive an IndentationError and your code won’t work!</p>
 <section id="how-indentation-works">
-<h4>How Indentation Works<a class="headerlink" href="#how-indentation-works" title="Permalink to this headline">¶</a></h4>
+<h4>How Indentation Works<a class="headerlink" href="#how-indentation-works" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>All statements with the same distance from the left border belong of the same block of code. This is related to the <em>scope</em> of your code.</p></li>
 <li><p>Sub-blocks are more indented, while the block ends at the line less indented.</p></li>
@@ -855,10 +966,10 @@
 </ul>
 </section>
 <section id="recommended-reading-on-python-syntax-and-style">
-<h4>Recommended Reading on Python syntax and style<a class="headerlink" href="#recommended-reading-on-python-syntax-and-style" title="Permalink to this headline">¶</a></h4>
+<h4>Recommended Reading on Python syntax and style<a class="headerlink" href="#recommended-reading-on-python-syntax-and-style" title="Permalink to this headline">#</a></h4>
 <p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP 8 - Style Guide for Python Code</a></p>
 <section id="the-code-is-way-more-readable">
-<h5>The code is way more readable:<a class="headerlink" href="#the-code-is-way-more-readable" title="Permalink to this headline">¶</a></h5>
+<h5>The code is way more readable:<a class="headerlink" href="#the-code-is-way-more-readable" title="Permalink to this headline">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># input() reads from standard input (e.g. keyboard)</span>
 <span class="n">n_string</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter a number, please:&#39;</span><span class="p">)</span>
 
@@ -879,12 +990,12 @@
 </section>
 </section>
 <section id="conditional-statements-loops-and-functions">
-<h2>Conditional statements, loops and functions<a class="headerlink" href="#conditional-statements-loops-and-functions" title="Permalink to this headline">¶</a></h2>
+<h2>Conditional statements, loops and functions<a class="headerlink" href="#conditional-statements-loops-and-functions" title="Permalink to this headline">#</a></h2>
 <p>Up till now, you’ve used the Python language and syntax as a fancy calculator. Most likely you felt that you needed additional elements to prevent replication in your code, or saw that you needed a conditional statement that only executed your code when a particular variable/statement was True/False.</p>
 <p>Below are the building blocks for writing such code blocks introduced. Let’s take a look at conditional statements first.</p>
 </section>
 <section id="conditional-statements">
-<h2>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
+<h2>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">#</a></h2>
 <p>A lot of programming has to do with executing a block of code only if a certain condition is verified.</p>
 <p>In Python, the <code class="docutils literal notranslate"><span class="pre">if-then-else</span></code> construct has the form:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
@@ -933,7 +1044,7 @@
 </div>
 </div>
 <section id="quiz">
-<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">#</a></h3>
 <p>Finish the following code block. The <code class="docutils literal notranslate"><span class="pre">intput()</span></code> function askes the user in the Python interpreter to input some text. Implement the following:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Print a line with a friendly message, telling the user what their input is
 * Check if the input is a digit
@@ -952,26 +1063,26 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">user_digit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;A number &gt; 0 please: &quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/.local/lib/python3.8/site-packages/ipykernel/kernelbase.py:1041,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1034</span> <span class="sd">&quot;&quot;&quot;Forward raw_input to frontends</span>
-<span class="g g-Whitespace">   </span><span class="mi">1035</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1036</span><span class="sd"> Raises</span>
-<span class="g g-Whitespace">   </span><span class="mi">1037</span><span class="sd"> ------</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span><span class="sd"> StdinNotImplementedError if active frontend doesn&#39;t support stdin.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1039</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1041</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1042</span>         <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1043</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1044</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1045</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1046</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">   </span><span class="mi">1047</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1048</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span> <span class="p">)</span>
+<span class="nn">File ~/.local/lib/python3.8/site-packages/ipykernel/kernelbase.py:1158,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span> <span class="sd">&quot;&quot;&quot;Forward raw_input to frontends</span>
+<span class="g g-Whitespace">   </span><span class="mi">1152</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1153</span><span class="sd"> Raises</span>
+<span class="g g-Whitespace">   </span><span class="mi">1154</span><span class="sd"> ------</span>
+<span class="g g-Whitespace">   </span><span class="mi">1155</span><span class="sd"> StdinNotImplementedError if active frontend doesn&#39;t support stdin.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1156</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1157</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1158</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1159</span>         <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1160</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1163</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1166</span> <span class="p">)</span>
 
 <span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div>
@@ -981,9 +1092,9 @@
 </section>
 </section>
 <section id="flow-control-looping">
-<h2>Flow control / Looping<a class="headerlink" href="#flow-control-looping" title="Permalink to this headline">¶</a></h2>
+<h2>Flow control / Looping<a class="headerlink" href="#flow-control-looping" title="Permalink to this headline">#</a></h2>
 <section id="for-loops">
-<h3>For Loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
+<h3>For Loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">#</a></h3>
 <p>Programming is of little use if we cannot repeat an instruction for an intended number of times. In the previous examples, you had to change the code and re-run in if you wanted to play with, for instance, the value of the <code class="docutils literal notranslate"><span class="pre">item</span></code> variable.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> statement allows us to define <strong>iterations</strong> (i.e.taking items from an iterable) by following this template:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
@@ -1067,7 +1178,7 @@ Elit
 </div>
 </div>
 <section id="the-enumerate-function">
-<h4>The enumerate function<a class="headerlink" href="#the-enumerate-function" title="Permalink to this headline">¶</a></h4>
+<h4>The enumerate function<a class="headerlink" href="#the-enumerate-function" title="Permalink to this headline">#</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> is problably the most used among the functions that supports the iteration of an iterable. This function return the current item plus <strong>its index</strong> in the iteration process.</p>
 <p>You can see that we assign two variable names, <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">word</span></code> to the outcome of <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code>.
 What is the datatype that this function is returning?
@@ -1141,7 +1252,7 @@ And what are the datatypes of its elements?</p>
 </div>
 </section>
 <section id="the-range-construct">
-<h4>The range construct<a class="headerlink" href="#the-range-construct" title="Permalink to this headline">¶</a></h4>
+<h4>The range construct<a class="headerlink" href="#the-range-construct" title="Permalink to this headline">#</a></h4>
 <p>The  <code class="docutils literal notranslate"><span class="pre">range()</span></code> construct can be used to control the iteration. It generate lists of numbers on the basis of the following three arguments:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">start</span></code> : the first integer of the list
@@ -1202,7 +1313,7 @@ range(1, 10, 2)
 </section>
 </section>
 <section id="while-loops">
-<h3>While Loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
+<h3>While Loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> statement allows us to control a loop on the basis of a condition.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">while</span></code> loop runs as long as a condition is verified.</p>
 <p>It has the following general form:</p>
@@ -1215,7 +1326,7 @@ range(1, 10, 2)
 <p>the code in the optional <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is execute if and only if the loops terminates successfully (i.e., without a <strong><code class="docutils literal notranslate"><span class="pre">break</span></code></strong>)</p>
 </section>
 <section id="id1">
-<h3>Quiz<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p><em>Think before doing.</em> What do you think happens when you execute?</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1239,9 +1350,9 @@ range(1, 10, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
-73
-38
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59
+91
+88
 </pre></div>
 </div>
 </div>
@@ -1249,7 +1360,7 @@ range(1, 10, 2)
 </section>
 <hr class="docutils" />
 <section id="break-and-continue">
-<h3>Break and Continue<a class="headerlink" href="#break-and-continue" title="Permalink to this headline">¶</a></h3>
+<h3>Break and Continue<a class="headerlink" href="#break-and-continue" title="Permalink to this headline">#</a></h3>
 <p>The clauses <code class="docutils literal notranslate"><span class="pre">break</span></code> and <code class="docutils literal notranslate"><span class="pre">continue</span></code> are two statements that allow for a more flexible control of a loop. Intuitively:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code> is used to pass to the next iteration of the loop</p></li>
@@ -1341,7 +1452,7 @@ range(1, 10, 2)
 </div>
 </section>
 <section id="the-pass-statement">
-<h3>The Pass Statement<a class="headerlink" href="#the-pass-statement" title="Permalink to this headline">¶</a></h3>
+<h3>The Pass Statement<a class="headerlink" href="#the-pass-statement" title="Permalink to this headline">#</a></h3>
 <p>Given the importance of indentation for Python, sometimes we may need a placeholder that allows us to write down a condition for an <code class="docutils literal notranslate"><span class="pre">if-then-else</span></code> construct or for a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop without writing any statement (maybe just a comment). This is the case in which the <code class="docutils literal notranslate"><span class="pre">pass</span></code> statement comes in handy.</p>
 <p>In what follows, <strong>nothing happens</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
@@ -1378,7 +1489,7 @@ Odd!
 </section>
 <hr class="docutils" />
 <section id="list-comprehensions-advanced">
-<h3>List Comprehensions (advanced)<a class="headerlink" href="#list-comprehensions-advanced" title="Permalink to this headline">¶</a></h3>
+<h3>List Comprehensions (advanced)<a class="headerlink" href="#list-comprehensions-advanced" title="Permalink to this headline">#</a></h3>
 <p>A list comprehension is a syntactic construct that allows us to create lists by applying a function on another list, in just <strong>one line</strong> of code.</p>
 <p>Even if the reverse isn’t always true, list comprehensions can always be (inefficiently) expressed as loops. We will exploit this family resemblance for introducing this construct.</p>
 <p>In what follows, we start with a list of numbers and we want to square all of its elements and save our final values in a new list.</p>
@@ -1503,7 +1614,7 @@ Odd!
 </div>
 </section>
 <section id="id2">
-<h3>Quiz<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>The following list contains 100 random extractions (with replacement) of numbers between 1 and 15.</p>
 <p>Find the number that has never been extracted</p>
 <div class="cell docutils container">
@@ -1525,12 +1636,12 @@ Odd!
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="input-output">
-<h1>Input / Output<a class="headerlink" href="#input-output" title="Permalink to this headline">¶</a></h1>
+<h1>Input / Output<a class="headerlink" href="#input-output" title="Permalink to this headline">#</a></h1>
 <p>We now discussed the art of looping, to automate bits of your code and prevent repetition. If you know that you’re going to use parts of your code more than once, you can make a function out of it. Functions are constructs that allows us to organize portions of code more than once in a program. The alternative way to obtain the same results without functions would be to copy the same portion of code every time it is needed. Organizing your code with functions makes it easier to split your problem into smaller subproblems.</p>
 <p>We have seen plenty of built-in functions so far. If you used them, you could have recognized them by their parenthesesis after their name. The <code class="docutils literal notranslate"><span class="pre">print()</span></code> functions is such an example.</p>
 <p>A function <strong>takes optional parameters</strong> (inside the parenthesis) and <strong>optionally returns a value</strong> after it has done something.</p>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <p>Functions in Python are defined by a <code class="docutils literal notranslate"><span class="pre">def</span></code> statement, following this template:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
@@ -1663,7 +1774,7 @@ chars(s)
 </div>
 <p>Sometimes, you don’t need a return statement, as you’re for instance writing a function as some kind of wrapper function, that ties several methods together. Or write the output to a file, instead of to the console. It’s best to make clear in the docstring/documentation of the function (using the <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span> <span class="pre">&quot;&quot;&quot;</span></code> docstring style) what the function takes in, processes, and spits out again.</p>
 <section id="parameters">
-<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">#</a></h3>
 <p>A function can receive any number of parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1711,7 +1822,7 @@ chars(s)
 </div>
 </div>
 <section id="optional-parameters">
-<h4>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this headline">¶</a></h4>
+<h4>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this headline">#</a></h4>
 <p>In some situation it may be useful to have a default parameter value, that is used when a call leaves an arguments <strong>unspecified</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1757,7 +1868,7 @@ chars(s)
 </div>
 </section>
 <section id="arbitrary-number-of-parameters">
-<h4>Arbitrary Number of Parameters<a class="headerlink" href="#arbitrary-number-of-parameters" title="Permalink to this headline">¶</a></h4>
+<h4>Arbitrary Number of Parameters<a class="headerlink" href="#arbitrary-number-of-parameters" title="Permalink to this headline">#</a></h4>
 <p>A different situation is when we want our function to have an unspecified number of parameters. Python functions admit the so-called “tuple references”, marked by an asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> in front of the last parameter  (that becomes a <code class="docutils literal notranslate"><span class="pre">tuple</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1784,7 +1895,7 @@ chars(s)
 </section>
 <hr class="docutils" />
 <section id="id3">
-<h4>Quiz<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4>Quiz<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
 <p>Remember the grocery list. Can you write a function that:</p>
 <ul class="simple">
 <li><p>Takes <em>one or multiple</em> items as arguments</p></li>
@@ -1813,7 +1924,7 @@ chars(s)
 </section>
 <hr class="docutils" />
 <section id="modules-and-packages">
-<h2>Modules and Packages<a class="headerlink" href="#modules-and-packages" title="Permalink to this headline">¶</a></h2>
+<h2>Modules and Packages<a class="headerlink" href="#modules-and-packages" title="Permalink to this headline">#</a></h2>
 <p>Python modules are groupings of related code that are structures as to facilitate its re-use.</p>
 <p>Physically, modules are <code class="docutils literal notranslate"><span class="pre">.py</span></code> files implementing a set of <strong>functions, classes or variables</strong>, as well as <strong>executable statements</strong>, that can be accessed from other modules by using the <code class="docutils literal notranslate"><span class="pre">import</span></code> command.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">import</span></code> command can be used both to import <strong>the whole code</strong> of a module, using the following syntax:</p>
@@ -1873,10 +1984,10 @@ chars(s)
 </section>
 <hr class="docutils" />
 <section id="file-input-output">
-<h2>File Input/Output<a class="headerlink" href="#file-input-output" title="Permalink to this headline">¶</a></h2>
+<h2>File Input/Output<a class="headerlink" href="#file-input-output" title="Permalink to this headline">#</a></h2>
 <p>A huge portion of our input data will come from files on disk, and a lot of our work will be saved in memory. So, mastering the art of reading and writing is crucial even in programming.</p>
 <section id="files-in-colab">
-<h3>Files in Colab<a class="headerlink" href="#files-in-colab" title="Permalink to this headline">¶</a></h3>
+<h3>Files in Colab<a class="headerlink" href="#files-in-colab" title="Permalink to this headline">#</a></h3>
 <p>In these examples, we will work with a file referred to as “data/adams-hhgttg.txt”. This means there should be a directory called “Data” and inside of that there should be the file “adams-hhgttg.txt”. You will find this in the course repository in the Notebooks directory. Obtain this file either by downloading the course repository and finding it there, or opening it on Github and saving the raw file.</p>
 <img alt="gitdownload" src="../_images/git-download.png" />
 <p>In Colab, you can view and edit the file system by clicking on the “Files” icon on the left side. You will see the file system of your Colab session there with a directory called “sample_data”. You can make directories and upload files here.</p>
@@ -1906,11 +2017,11 @@ chars(s)
 <p>Colab sessions are temporary - the next time you load Colab to work on this notebook, you will have to upload your Data zip file and unzip it again.</p>
 </div>
 <section id="manually-creating-folders-and-files">
-<h4>Manually creating folders and files<a class="headerlink" href="#manually-creating-folders-and-files" title="Permalink to this headline">¶</a></h4>
+<h4>Manually creating folders and files<a class="headerlink" href="#manually-creating-folders-and-files" title="Permalink to this headline">#</a></h4>
 <p>Besides the “sample_data” and “data” that you now have, you can make another directory by right-clicking somewhere in this file system window and choosing “New folder”. For example, create a folder called Stuff for your code’s output.</p>
 </section>
 <section id="permanently-saving-your-files-google-drive">
-<h4>Permanently saving your files: Google Drive<a class="headerlink" href="#permanently-saving-your-files-google-drive" title="Permalink to this headline">¶</a></h4>
+<h4>Permanently saving your files: Google Drive<a class="headerlink" href="#permanently-saving-your-files-google-drive" title="Permalink to this headline">#</a></h4>
 <p>There is also a more permanent solution, which is to link your Google Drive to your Colab session. You can do it by clicking the “Mount Drive” button in the Files window, or with this code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1922,7 +2033,7 @@ chars(s)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">47</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [47],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
 
@@ -1935,7 +2046,7 @@ chars(s)
 </section>
 </section>
 <section id="opening-a-file">
-<h3>Opening a file<a class="headerlink" href="#opening-a-file" title="Permalink to this headline">¶</a></h3>
+<h3>Opening a file<a class="headerlink" href="#opening-a-file" title="Permalink to this headline">#</a></h3>
 <p>The following code opens a file in our filesystem, prints the first 10 lines and closes the file. Please note that this file must exist in your Colab session (when running on Colab) on your computer (when running locally).</p>
 <p>If you are working locally and you have only have downloaded this notebook, go back to the repository and download the file to the appropriate path (or change the path below).</p>
 <div class="tip admonition">
@@ -2002,7 +2113,7 @@ yellow sun.
 <p>In the solution we adopt here the input file is read line by line, so that at any given moment <strong>only one line of text</strong> is loaded into memory.</p>
 </section>
 <section id="the-with-statement">
-<h3>The with statement<a class="headerlink" href="#the-with-statement" title="Permalink to this headline">¶</a></h3>
+<h3>The with statement<a class="headerlink" href="#the-with-statement" title="Permalink to this headline">#</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">with</span></code> statement is used to wrap the execution of a block of code.</p>
 <p>Using this construction to open files has three major advantages:</p>
 <ul class="simple">
@@ -2030,7 +2141,7 @@ yellow sun.
 <p>The code in the indented with block is executed while the file is opened. It is automatically closed as the block is closed.</p>
 </section>
 <section id="id4">
-<h3>Quiz<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Write one function that takes a file path as argument and prints statistics about the file, giving:</p>
 <ul>
@@ -2060,7 +2171,7 @@ yellow sun.
 </section>
 <hr class="docutils" />
 <section id="writing-to-files">
-<h3>Writing to files<a class="headerlink" href="#writing-to-files" title="Permalink to this headline">¶</a></h3>
+<h3>Writing to files<a class="headerlink" href="#writing-to-files" title="Permalink to this headline">#</a></h3>
 <p>Writing an output file in Python has a structure that is close to that we’re ued in our reading examples above. The main difference are</p>
 <ul class="simple">
 <li><p>the specification of the <strong>mode</strong> <code class="docutils literal notranslate"><span class="pre">w</span></code></p></li>
@@ -2110,7 +2221,7 @@ Alexander
 </div>
 </section>
 <section id="looping-through-folders-and-files">
-<h3>Looping through folders and files<a class="headerlink" href="#looping-through-folders-and-files" title="Permalink to this headline">¶</a></h3>
+<h3>Looping through folders and files<a class="headerlink" href="#looping-through-folders-and-files" title="Permalink to this headline">#</a></h3>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">os</span></code> module to loop through a folder and load multiple files in memory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2164,15 +2275,15 @@ any emotion
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h1>
 <section id="reading">
-<h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h2>
+<h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">#</a></h2>
 <p>TBD</p>
 </section>
 <section id="tasks">
-<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">#</a></h2>
 <section id="exercise-1">
-<h3>Exercise 1.<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 1.<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h3>
 <p>Find all words starting with a capital letter from the text in <code class="docutils literal notranslate"><span class="pre">text</span></code> below.</p>
 <p>Make a list of the most frequent words in this text, but without the words ‘the’ and ‘a’.</p>
 <div class="cell docutils container">
@@ -2186,7 +2297,7 @@ any emotion
 </div>
 </section>
 <section id="exercise-2">
-<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h3>
 <p>Write a function that:</p>
 <ul class="simple">
 <li><p>Takes a string as input</p></li>
@@ -2204,7 +2315,7 @@ any emotion
 </div>
 </section>
 <section id="exercise-3">
-<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">#</a></h3>
 <p>Adapt the function in the previous exercise so that it also ignores punctuation.</p>
 <div class="tip admonition">
 <p class="admonition-title">My title</p>
@@ -2223,7 +2334,7 @@ any emotion
 </div>
 </section>
 <section id="exercise-4">
-<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">#</a></h3>
 <p>Remember the quiz from the previous notebook with the following code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">homogeneous_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;56&quot;</span><span class="p">,</span> <span class="s2">&quot;33&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="s2">&quot;220&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">]</span>
 <span class="n">homogeneous_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
@@ -2246,7 +2357,7 @@ any emotion
 </div>
 </section>
 <section id="exercise-5">
-<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Factorial">factorial</a> of an integer <span class="math notranslate nohighlight">\(n\)</span>, defined as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2271,7 +2382,7 @@ n! = \begin{cases}
 </div>
 </section>
 <section id="exercise-6">
-<h3>Exercise 6<a class="headerlink" href="#exercise-6" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 6<a class="headerlink" href="#exercise-6" title="Permalink to this headline">#</a></h3>
 <p>Read the file <code class="docutils literal notranslate"><span class="pre">data/adams-hhgttg.txt</span></code> and:</p>
 <ul class="simple">
 <li><p>Count the number of lines in the file</p></li>
@@ -2324,9 +2435,11 @@ n! = \begin{cases}
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="1_Basics.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2342,24 +2455,28 @@ n! = \begin{cases}
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joy Crosbie, Nils Peters<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Joy Crosbie, Nils Peters<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

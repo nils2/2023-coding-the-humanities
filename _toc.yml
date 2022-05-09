@@ -25,9 +25,3 @@ parts:
   - caption: Week 5
     chapters:
     - file: myst-notebooks/5_WorkingTweets
-  - caption: Week 6 (Optional)
-    chapters:
-    - file: myst-notebooks/6_WebScraping
-  - caption: Week 7 (Optional)
-    chapters:
-    - file: myst-notebooks/7_WorkingTexts

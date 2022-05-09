@@ -8,8 +8,9 @@
 
     <title>Data Wrangling &#8212; 2023-coding-the-humanities</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,12 +20,8 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,7 +29,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -40,18 +38,17 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -64,7 +61,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +84,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to Coding the Humanities
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Coding the Humanities
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Setup
  </span>
@@ -184,130 +197,228 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Week 6 (Optional)
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="6_WebScraping.html">
-   Web Scraping and APIs
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Week 7 (Optional)
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="7_WorkingTexts.html">
-   Working with texts
-  </a>
- </li>
-</ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/myst-notebooks/4_PandasDataWrangling.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/myst-notebooks/4_PandasDataWrangling.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/bloemj/2022-coding-the-humanities"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/bloemj/2022-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/4_PandasDataWrangling.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/nils2/2023-coding-the-humanities/blob/master/myst-notebooks/4_PandasDataWrangling.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/4_PandasDataWrangling.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/myst-notebooks/4_PandasDataWrangling.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/myst-notebooks/4_PandasDataWrangling.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Data Wrangling
@@ -622,12 +733,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Data Wrangling</h1>
@@ -958,13 +1068,14 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="data-wrangling">
-<h1>Data Wrangling<a class="headerlink" href="#data-wrangling" title="Permalink to this headline">¶</a></h1>
+<h1>Data Wrangling<a class="headerlink" href="#data-wrangling" title="Permalink to this headline">#</a></h1>
 <section id="contents">
-<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>String formatting (f-strings)</p></li>
 <li><p>Regular expressions (regex)</p></li>
@@ -972,7 +1083,7 @@
 </ul>
 </section>
 <section id="string-formatting">
-<h2>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this headline">¶</a></h2>
+<h2>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this headline">#</a></h2>
 <p>Instead of writing a series of <code class="docutils literal notranslate"><span class="pre">print()</span></code> statements with multiple arguments, or concatenating (by <code class="docutils literal notranslate"><span class="pre">+</span></code>) strings, you can also use a Python string formatting method, called <code class="docutils literal notranslate"><span class="pre">f-strings</span></code>. More information can be read in PEP 498: <a class="reference external" href="https://www.python.org/dev/peps/pep-0498/">https://www.python.org/dev/peps/pep-0498/</a></p>
 <p>You can define a string as a template by inserting <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code> characters with a variable name or expression in between. For this to work, you have to type an <code class="docutils literal notranslate"><span class="pre">f</span></code> in front of the <code class="docutils literal notranslate"><span class="pre">'</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> start of the string definition. When defined, the string will read with the string value of the variable or the expression filled in.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Joe&quot;</span>
@@ -1036,7 +1147,7 @@
 </section>
 <hr class="docutils" />
 <section id="regular-expressions">
-<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
+<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">#</a></h2>
 <p>Using regular expressions can be very useful when working with texts. It is a powerful search mechanism by which you can search on patterns, instead of ‘exact matches’. But, they can be difficult to grasp, at first sight.</p>
 <p>A <strong>regular expression</strong>, for instance, allows you to substitute all digits in a text, following another text sequence, or to find all urls, phone numbers, or email addresses. Or any text, that meets a particular condition.</p>
 <p>See the Python manual for the <code class="docutils literal notranslate"><span class="pre">re</span></code> module for more info: <a class="reference external" href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a></p>
@@ -1138,7 +1249,7 @@
 </div>
 </div>
 <section id="quiz">
-<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">#</a></h3>
 <p>Try to get a list of all directors. And the gross income.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1201,15 +1312,15 @@ M. Caine
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="data-wrangling-with-pandas">
-<h1>Data wrangling with Pandas<a class="headerlink" href="#data-wrangling-with-pandas" title="Permalink to this headline">¶</a></h1>
+<h1>Data wrangling with Pandas<a class="headerlink" href="#data-wrangling-with-pandas" title="Permalink to this headline">#</a></h1>
 <section id="csv-in-pandas">
-<h2>CSV (in Pandas)<a class="headerlink" href="#csv-in-pandas" title="Permalink to this headline">¶</a></h2>
+<h2>CSV (in Pandas)<a class="headerlink" href="#csv-in-pandas" title="Permalink to this headline">#</a></h2>
 <p>The other often used file type is CSV (Comma Separated Values), or variants, such as TSV (Tab Separated Values). Python includes another built-in module to deal with these files: the <code class="docutils literal notranslate"><span class="pre">csv</span></code> module. But, we will be using the <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> module, the go-to package for data analysis, that you already imported and updated in Notebook 0.</p>
 <p>A CSV file is similar to an Excel or Google Docs spreadsheet, but more limited in markup and functionality (e.g. you cannot store Excel functions). It is just a text file in which individual entries correspond to lines, and columns are separated by a comma. You can always open a CSV file with a text editor, and this also makes it so easy to store and share data with.</p>
 <p>For the rest of the notebook we will see how to work with the two main data types in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>: the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> and a <code class="docutils literal notranslate"><span class="pre">Series</span></code>.</p>
 <p>Information on functions and modules of Pandas cannot be found in the Python manual online, as it is an external package. Instead, you can refer to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/index.html">https://pandas.pydata.org/pandas-docs/stable/index.html</a> .</p>
 <section id="dataframe">
-<h3><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#dataframe" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#dataframe" title="Permalink to this headline">#</a></h3>
 <p>What is a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>?</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is a collection of <code class="docutils literal notranslate"><span class="pre">Series</span></code> having the same length and whose indexes are in sync. A <em>collection</em> means that each column of a dataframe is a series. You can also see it as a spreadheet in memory, that also allows for inclusion of Python objects.</p>
 <p>We first have to import the package. It’s a convention to do this like so with Pandas, which makes the elements from this package (classes, functions, methods) available under its abbreviation <code class="docutils literal notranslate"><span class="pre">pd</span></code>:</p>
@@ -1392,7 +1503,7 @@ M. Caine
 <p>If you look for other methods on <code class="docutils literal notranslate"><span class="pre">pd</span></code> you can call, you’ll also see that there is an <code class="docutils literal notranslate"><span class="pre">pd.read_excel()</span></code> option to read spreadsheets in <code class="docutils literal notranslate"><span class="pre">.xls</span></code> or <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>. You can also  use this, if you have these kind of files.</p>
 </section>
 <section id="statistics">
-<h3>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h3>
+<h3>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">#</a></h3>
 <p>Now that we loaded our DataFrame, we can make pandas print some statistics on the file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1708,9 +1819,9 @@ dtype: object
 </div>
 </section>
 <section id="slicing-and-selecting">
-<h3>Slicing and selecting<a class="headerlink" href="#slicing-and-selecting" title="Permalink to this headline">¶</a></h3>
+<h3>Slicing and selecting<a class="headerlink" href="#slicing-and-selecting" title="Permalink to this headline">#</a></h3>
 <section id="df-column1">
-<h4><code class="docutils literal notranslate"><span class="pre">df['column1']</span></code><a class="headerlink" href="#df-column1" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">df['column1']</span></code><a class="headerlink" href="#df-column1" title="Permalink to this headline">#</a></h4>
 <p>You can select a single column by calling this column name as if the DataFrame was a dictionary. A single column from a DataFrame returns a <code class="docutils literal notranslate"><span class="pre">Series</span></code> object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1934,7 +2045,7 @@ Name: movie, Length: 85, dtype: object
 </div>
 </section>
 <section id="df-column1-column2">
-<h4><code class="docutils literal notranslate"><span class="pre">df[['column1',</span> <span class="pre">'column2']]</span></code><a class="headerlink" href="#df-column1-column2" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">df[['column1',</span> <span class="pre">'column2']]</span></code><a class="headerlink" href="#df-column1-column2" title="Permalink to this headline">#</a></h4>
 <p>We can also slice a DataFrame by calling multiple column names as one list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2029,7 +2140,7 @@ Name: movie, Length: 85, dtype: object
 </section>
 </section>
 <section id="looping-over-dataframes">
-<h3>Looping over DataFrames<a class="headerlink" href="#looping-over-dataframes" title="Permalink to this headline">¶</a></h3>
+<h3>Looping over DataFrames<a class="headerlink" href="#looping-over-dataframes" title="Permalink to this headline">#</a></h3>
 <p>You might expect that if you loop through a DataFrame, you get all the rows. Sadly, it is not that simple, because we now have data in two dimensions. We instead get all the column names (or the first row of the dataframe):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2052,7 +2163,7 @@ female_cast
 </div>
 </div>
 <section id="zip-df-column1-df-column2">
-<h4><code class="docutils literal notranslate"><span class="pre">zip(df['column1',</span> <span class="pre">df['column2')</span></code><a class="headerlink" href="#zip-df-column1-df-column2" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">zip(df['column1',</span> <span class="pre">df['column2')</span></code><a class="headerlink" href="#zip-df-column1-df-column2" title="Permalink to this headline">#</a></h4>
 <p>Going over these items in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop needs a different approach. The built-in <code class="docutils literal notranslate"><span class="pre">zip()</span></code> function (<a class="reference external" href="https://docs.python.org/3/library/functions.html#zip">manual</a>) takes two iterables of even length and creates a new iterable of tuples. The number of arguments/iterables that you give to <code class="docutils literal notranslate"><span class="pre">zip()</span></code> determines the length of the tuples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2099,7 +2210,7 @@ You Can&#39;t Take It With You	http://www.imdb.com/title/tt0030993
 </div>
 </section>
 <section id="to-dict-orient-record">
-<h4><code class="docutils literal notranslate"><span class="pre">.to_dict(orient='record')</span></code><a class="headerlink" href="#to-dict-orient-record" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">.to_dict(orient='record')</span></code><a class="headerlink" href="#to-dict-orient-record" title="Permalink to this headline">#</a></h4>
 <p>Or, accessing all entries in a convenient way, as a python dictionary for instance, can be done with the <code class="docutils literal notranslate"><span class="pre">.to_dict(orient='records')</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2181,7 +2292,7 @@ The movie Wings was produced in 1927 and won in 1929.
 </div>
 </section>
 <section id="iterrows">
-<h4><code class="docutils literal notranslate"><span class="pre">.iterrows()</span></code><a class="headerlink" href="#iterrows" title="Permalink to this headline">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">.iterrows()</span></code><a class="headerlink" href="#iterrows" title="Permalink to this headline">#</a></h4>
 <p>Or you can use the <code class="docutils literal notranslate"><span class="pre">.iterrows()</span></code> method, which gives you tuples of the index of the row, and the row itself as <code class="docutils literal notranslate"><span class="pre">Series</span></code> object:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2209,7 +2320,7 @@ The movie Wings was produced in 1927 and won in 1929.
 </section>
 <hr class="docutils" />
 <section id="analysis">
-<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h3>
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
@@ -2379,7 +2490,7 @@ The movie Wings was produced in 1927 and won in 1929.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_39771/3698961737.py:1: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with &#39;numeric_only=None&#39;) is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_25172/3698961737.py:1: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with &#39;numeric_only=None&#39;) is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.
   df.mean()
 </pre></div>
 </div>
@@ -3290,7 +3401,7 @@ Name: year, Length: 85, dtype: datetime64[ns]
 </div>
 </section>
 <section id="plotting">
-<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
+<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">#</a></h3>
 <p>Let’s try to make some graphs from our data, for instance the number of male/female actors over time.</p>
 <p>We now have a year column that is interpreted as time by Pandas. These values can figure as values on a x-axis in a graph. The y-axis would then give info on the number of male and female actors in the movie.</p>
 <p>First, we set an <strong>index</strong> for the DataFrame. This determines how the data can be accessed. Normally, this is a range of 0 untill the number of rows. But, you can change this, so that we can analyse the dataframe on a time index.</p>
@@ -3505,13 +3616,13 @@ Name: year, Length: 85, dtype: datetime64[ns]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;award_year&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/4_PandasDataWrangling_91_1.png" src="../_images/4_PandasDataWrangling_91_1.png" />
+<img alt="../_images/b31bdbb7faf641585bdd306ca89aa4279b8e191b0989de6c54a3735f8b299711.png" src="../_images/b31bdbb7faf641585bdd306ca89aa4279b8e191b0989de6c54a3735f8b299711.png" />
 </div>
 </div>
 <p>There are tons of parameters, functions, methods, transformations you can use on DataFrames and also on this plotting function. Luckily, plenty of guides and examples can be found on the internet.</p>
 </section>
 <section id="grouping">
-<h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
+<h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
@@ -3682,7 +3793,7 @@ Name: year, Length: 85, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fea8ba6b910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f1a8bc929a0&gt;
 </pre></div>
 </div>
 </div>
@@ -4074,7 +4185,7 @@ William Wyler 3
 </div>
 </section>
 <section id="adding-a-column">
-<h3>Adding a column<a class="headerlink" href="#adding-a-column" title="Permalink to this headline">¶</a></h3>
+<h3>Adding a column<a class="headerlink" href="#adding-a-column" title="Permalink to this headline">#</a></h3>
 <p>If we want to get the total number of actors per movie, we have to sum the values from the <code class="docutils literal notranslate"><span class="pre">male_cast</span></code> and <code class="docutils literal notranslate"><span class="pre">female_cast</span></code> columns.</p>
 <p>You can do this in a for loop, by going over every row (like we saw above), but you can also sum the individual columns. Pandas will then add up the values with the same index and will return a new Series of the same length with the values summed.</p>
 <div class="cell docutils container">
@@ -4640,7 +4751,7 @@ Length: 85, dtype: int64
 </div>
 </section>
 <section id="saving-back-the-file">
-<h3>Saving back the file<a class="headerlink" href="#saving-back-the-file" title="Permalink to this headline">¶</a></h3>
+<h3>Saving back the file<a class="headerlink" href="#saving-back-the-file" title="Permalink to this headline">#</a></h3>
 <p>Use one of the <code class="docutils literal notranslate"><span class="pre">.to_csv()</span></code> or <code class="docutils literal notranslate"><span class="pre">.to_excel</span></code> functions to save the DataFrame. Again, no <code class="docutils literal notranslate"><span class="pre">with</span></code> statement needed, just a file path (and an encoding).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4658,37 +4769,37 @@ Length: 85, dtype: int64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">61</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [61],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_sorted</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;stuff/academyawards_sum.xlsx&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/.local/lib/python3.8/site-packages/pandas/core/generic.py:2357,</span> in <span class="ni">NDFrame.to_excel</span><span class="nt">(self, excel_writer, sheet_name, na_rep, float_format, columns, header, index, index_label, startrow, startcol, engine, merge_cells, encoding, inf_rep, verbose, freeze_panes, storage_options)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2344</span> <span class="kn">from</span> <span class="nn">pandas.io.formats.excel</span> <span class="kn">import</span> <span class="n">ExcelFormatter</span>
-<span class="g g-Whitespace">   </span><span class="mi">2346</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">ExcelFormatter</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2347</span>     <span class="n">df</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2348</span>     <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span>
+<span class="nn">File ~/.local/lib/python3.8/site-packages/pandas/core/generic.py:2345,</span> in <span class="ni">NDFrame.to_excel</span><span class="nt">(self, excel_writer, sheet_name, na_rep, float_format, columns, header, index, index_label, startrow, startcol, engine, merge_cells, encoding, inf_rep, verbose, freeze_panes, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2332</span> <span class="kn">from</span> <span class="nn">pandas.io.formats.excel</span> <span class="kn">import</span> <span class="n">ExcelFormatter</span>
+<span class="g g-Whitespace">   </span><span class="mi">2334</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">ExcelFormatter</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2335</span>     <span class="n">df</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2336</span>     <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2355</span>     <span class="n">inf_rep</span><span class="o">=</span><span class="n">inf_rep</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2356</span> <span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2357</span> <span class="n">formatter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2358</span>     <span class="n">excel_writer</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2359</span>     <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2360</span>     <span class="n">startrow</span><span class="o">=</span><span class="n">startrow</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2361</span>     <span class="n">startcol</span><span class="o">=</span><span class="n">startcol</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2362</span>     <span class="n">freeze_panes</span><span class="o">=</span><span class="n">freeze_panes</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2363</span>     <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2364</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2365</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2343</span>     <span class="n">inf_rep</span><span class="o">=</span><span class="n">inf_rep</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2344</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2345</span> <span class="n">formatter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2346</span>     <span class="n">excel_writer</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2347</span>     <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2348</span>     <span class="n">startrow</span><span class="o">=</span><span class="n">startrow</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2349</span>     <span class="n">startcol</span><span class="o">=</span><span class="n">startcol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2350</span>     <span class="n">freeze_panes</span><span class="o">=</span><span class="n">freeze_panes</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2351</span>     <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2352</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2353</span> <span class="p">)</span>
 
-<span class="nn">File ~/.local/lib/python3.8/site-packages/pandas/io/formats/excel.py:884,</span> in <span class="ni">ExcelFormatter.write</span><span class="nt">(self, writer, sheet_name, startrow, startcol, freeze_panes, engine, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="n">need_save</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">881</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">882</span>     <span class="c1"># error: Cannot instantiate abstract class &#39;ExcelWriter&#39; with abstract</span>
-<span class="g g-Whitespace">    </span><span class="mi">883</span>     <span class="c1"># attributes &#39;engine&#39;, &#39;save&#39;, &#39;supported_extensions&#39; and &#39;write_cells&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">884</span>     <span class="n">writer</span> <span class="o">=</span> <span class="n">ExcelWriter</span><span class="p">(</span>  <span class="c1"># type: ignore[abstract]</span>
-<span class="g g-Whitespace">    </span><span class="mi">885</span>         <span class="n">writer</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
-<span class="g g-Whitespace">    </span><span class="mi">886</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">887</span>     <span class="n">need_save</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">889</span> <span class="k">try</span><span class="p">:</span>
+<span class="nn">File ~/.local/lib/python3.8/site-packages/pandas/io/formats/excel.py:888,</span> in <span class="ni">ExcelFormatter.write</span><span class="nt">(self, writer, sheet_name, startrow, startcol, freeze_panes, engine, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">884</span>     <span class="n">need_save</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">885</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">886</span>     <span class="c1"># error: Cannot instantiate abstract class &#39;ExcelWriter&#39; with abstract</span>
+<span class="g g-Whitespace">    </span><span class="mi">887</span>     <span class="c1"># attributes &#39;engine&#39;, &#39;save&#39;, &#39;supported_extensions&#39; and &#39;write_cells&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">888</span>     <span class="n">writer</span> <span class="o">=</span> <span class="n">ExcelWriter</span><span class="p">(</span>  <span class="c1"># type: ignore[abstract]</span>
+<span class="g g-Whitespace">    </span><span class="mi">889</span>         <span class="n">writer</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
+<span class="g g-Whitespace">    </span><span class="mi">890</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">891</span>     <span class="n">need_save</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">893</span> <span class="k">try</span><span class="p">:</span>
 
 <span class="nn">File ~/.local/lib/python3.8/site-packages/pandas/io/excel/_openpyxl.py:49,</span> in <span class="ni">OpenpyxlWriter.__init__</span><span class="nt">(self, path, engine, date_format, datetime_format, mode, storage_options, if_sheet_exists, engine_kwargs, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -4725,7 +4836,7 @@ Length: 85, dtype: int64
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="data-wrangling-example">
-<h1>Data wrangling (example)<a class="headerlink" href="#data-wrangling-example" title="Permalink to this headline">¶</a></h1>
+<h1>Data wrangling (example)<a class="headerlink" href="#data-wrangling-example" title="Permalink to this headline">#</a></h1>
 <p>We can take a look at another example. We consider a dataset of tweets from Elon Musk, SpaceX and Tesla founder, and ask the following questions:</p>
 <ul class="simple">
 <li><p>When is Elon most actively tweeting?</p></li>
@@ -4739,7 +4850,7 @@ Length: 85, dtype: int64
 </div>
 </div>
 <section id="load-dataset">
-<h2>Load dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">¶</a></h2>
+<h2>Load dataset<a class="headerlink" href="#load-dataset" title="Permalink to this headline">#</a></h2>
 <p>Let’s read in a CSV file containing an export of <a class="reference external" href="https://twitter.com/elonmusk">Elon Musk’s tweets</a>, exported from Twitter’s API.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5101,12 +5212,12 @@ memory usage: 66.1+ KB
 <p>2819 rows × 2 columns</p>
 </div></div></div>
 </div>
-</section>
 <hr class="docutils" />
+</section>
 <section id="selection">
-<h2>Selection<a class="headerlink" href="#selection" title="Permalink to this headline">¶</a></h2>
+<h2>Selection<a class="headerlink" href="#selection" title="Permalink to this headline">#</a></h2>
 <section id="renaming-columns">
-<h3>Renaming columns<a class="headerlink" href="#renaming-columns" title="Permalink to this headline">¶</a></h3>
+<h3>Renaming columns<a class="headerlink" href="#renaming-columns" title="Permalink to this headline">#</a></h3>
 <p>An operation on dataframes that you’ll find yourself doing very often is to rename the columns. The first way of renaming columns is by manipulating directly the dataframe’s index via the <code class="docutils literal notranslate"><span class="pre">columns</span></code> property.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5279,7 +5390,7 @@ memory usage: 66.1+ KB
 <p><strong>Question</strong>: in which cases is it more convenient to use the second method over the first?</p>
 </section>
 <section id="selecting-columns">
-<h3>Selecting columns<a class="headerlink" href="#selecting-columns" title="Permalink to this headline">¶</a></h3>
+<h3>Selecting columns<a class="headerlink" href="#selecting-columns" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this selects one single column and returns as a Series</span>
@@ -5384,7 +5495,7 @@ Name: created_at, dtype: datetime64[ns]
 </div>
 </section>
 <section id="selecting-rows">
-<h3>Selecting rows<a class="headerlink" href="#selecting-rows" title="Permalink to this headline">¶</a></h3>
+<h3>Selecting rows<a class="headerlink" href="#selecting-rows" title="Permalink to this headline">#</a></h3>
 <p>Filtering rows in <code class="docutils literal notranslate"><span class="pre">pandas</span></code> is done by means of <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, which can contain the row number as well as a condition for the selection.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5438,7 +5549,7 @@ Name: created_at, dtype: datetime64[ns]
 </section>
 </section>
 <section id="transformation">
-<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
+<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
 <p>The two main functions used to manipulate and transform values in a dataframe are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.map()</span></code> (on Series only!)</p></li>
@@ -5446,7 +5557,7 @@ Name: created_at, dtype: datetime64[ns]
 </ul>
 <p>In this section we’ll be using both to enrich our datasets with useful information (useful for exploration, for later visualizations, etc.).</p>
 <section id="add-link-to-original-tweet">
-<h3>Add link to original tweet<a class="headerlink" href="#add-link-to-original-tweet" title="Permalink to this headline">¶</a></h3>
+<h3>Add link to original tweet<a class="headerlink" href="#add-link-to-original-tweet" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">map()</span></code> method can be called on a column, as well as on the dataframe’s index.</p>
 <p>When passed as a parameter to <code class="docutils literal notranslate"><span class="pre">map</span></code>, an ‘anonymous’ lambda function <code class="docutils literal notranslate"><span class="pre">lambda</span></code> can be used to transform any value from that column into another one.</p>
 <div class="cell docutils container">
@@ -5574,7 +5685,7 @@ Name: created_at, dtype: datetime64[ns]
 </div>
 </section>
 <section id="add-colums-with-mentions">
-<h3>Add colums with mentions<a class="headerlink" href="#add-colums-with-mentions" title="Permalink to this headline">¶</a></h3>
+<h3>Add colums with mentions<a class="headerlink" href="#add-colums-with-mentions" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
@@ -5694,7 +5805,7 @@ Name: created_at, dtype: datetime64[ns]
 </div>
 </section>
 <section id="add-column-with-week-day-and-hour">
-<h3>Add column with week day and hour<a class="headerlink" href="#add-column-with-week-day-and-hour" title="Permalink to this headline">¶</a></h3>
+<h3>Add column with week day and hour<a class="headerlink" href="#add-column-with-week-day-and-hour" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">day_of_week</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
@@ -5823,7 +5934,7 @@ Name: created_at, dtype: datetime64[ns]
 </div>
 </section>
 <section id="add-column-with-day-hour">
-<h3>Add column with day hour<a class="headerlink" href="#add-column-with-day-hour" title="Permalink to this headline">¶</a></h3>
+<h3>Add column with day hour<a class="headerlink" href="#add-column-with-day-hour" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.created_at.dt<span class="o">?</span>
@@ -5923,7 +6034,7 @@ Name: created_at, dtype: int64
 </div></div></div>
 </div>
 <section id="multiple-conditions">
-<h4>Multiple conditions<a class="headerlink" href="#multiple-conditions" title="Permalink to this headline">¶</a></h4>
+<h4>Multiple conditions<a class="headerlink" href="#multiple-conditions" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AND condition with `&amp;`</span>
@@ -5974,7 +6085,7 @@ Name: created_at, dtype: int64
 </section>
 </section>
 <section id="aggregation">
-<h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
+<h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;n_mentions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">]})</span>
@@ -6021,7 +6132,7 @@ Name: created_at, dtype: int64
 </div></div></div>
 </div>
 <section id="id1">
-<h3>Grouping<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Grouping<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_by_day</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;week_day&#39;</span><span class="p">)</span>
@@ -6348,7 +6459,7 @@ Name: created_at, dtype: int64
 </div></div></div>
 </div>
 <section id="by-label-column">
-<h4>By label (column)<a class="headerlink" href="#by-label-column" title="Permalink to this headline">¶</a></h4>
+<h4>By label (column)<a class="headerlink" href="#by-label-column" title="Permalink to this headline">#</a></h4>
 <p>Previously we’ve added a column indicating on which day of the week a given tweet appeared.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6462,7 +6573,7 @@ Name: text, dtype: int64
 </div>
 </section>
 <section id="by-series-or-dict">
-<h4>By series or dict<a class="headerlink" href="#by-series-or-dict" title="Permalink to this headline">¶</a></h4>
+<h4>By series or dict<a class="headerlink" href="#by-series-or-dict" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.groupby<span class="o">?</span>
@@ -6645,7 +6756,7 @@ Name: text, dtype: int64
 </div>
 </section>
 <section id="by-multiple-labels-columns">
-<h4>By multiple labels (columns)<a class="headerlink" href="#by-multiple-labels-columns" title="Permalink to this headline">¶</a></h4>
+<h4>By multiple labels (columns)<a class="headerlink" href="#by-multiple-labels-columns" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we group based on the values of two columns</span>
@@ -6719,7 +6830,7 @@ Name: text, dtype: int64
 </section>
 </section>
 <section id="aggregation-methods">
-<h3>Aggregation methods<a class="headerlink" href="#aggregation-methods" title="Permalink to this headline">¶</a></h3>
+<h3>Aggregation methods<a class="headerlink" href="#aggregation-methods" title="Permalink to this headline">#</a></h3>
 <p><strong>Summary</strong>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: Number of non-NA values</p></li>
@@ -6865,7 +6976,7 @@ Name: text, dtype: int64
 </div>
 </section>
 <section id="sorting">
-<h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
+<h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">#</a></h3>
 <p>To sort the values of  a dataframe we use its <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> method:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">by</span></code>: specifies the name of the column to be used for sorting</p></li>
@@ -7086,7 +7197,7 @@ Name: text, dtype: int64
 </section>
 </section>
 <section id="save">
-<h2>Save<a class="headerlink" href="#save" title="Permalink to this headline">¶</a></h2>
+<h2>Save<a class="headerlink" href="#save" title="Permalink to this headline">#</a></h2>
 <p>Before continuing with the plotting, let’s save our enhanced dataframe, so that we can come back to it without having to redo the same manipulations on it.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> provides a number of handy functions to export dataframes in a variety of formats.</p>
 <p>Here we use <code class="docutils literal notranslate"><span class="pre">.to_pickle()</span></code> to serialize the dataframe into a binary format, by using behind the scenes Python’s <code class="docutils literal notranslate"><span class="pre">pickle</span></code> library.</p>
@@ -7099,7 +7210,7 @@ Name: text, dtype: int64
 </div>
 </section>
 <section id="part-2">
-<h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">¶</a></h2>
+<h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;stuff/musk_tweets_enhanced.pickle&quot;</span><span class="p">)</span>
@@ -7108,7 +7219,7 @@ Name: text, dtype: int64
 </div>
 </div>
 <section id="describe">
-<h3><code class="docutils literal notranslate"><span class="pre">describe()</span></code><a class="headerlink" href="#describe" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">describe()</span></code><a class="headerlink" href="#describe" title="Permalink to this headline">#</a></h3>
 <p>The default behavior is to include only column with numerical values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7201,7 +7312,7 @@ Name: text, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_39771/4047585927.py:1: FutureWarning: Treating datetime data as categorical rather than numeric in `.describe` is deprecated and will be removed in a future version of pandas. Specify `datetime_is_numeric=True` to silence this warning and adopt the future behavior now.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_25172/4047585927.py:1: FutureWarning: Treating datetime data as categorical rather than numeric in `.describe` is deprecated and will be removed in a future version of pandas. Specify `datetime_is_numeric=True` to silence this warning and adopt the future behavior now.
   df.describe(exclude=[list])
 </pre></div>
 </div>
@@ -7358,7 +7469,7 @@ Name: created_at, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_39771/1424112182.py:1: FutureWarning: Treating datetime data as categorical rather than numeric in `.describe` is deprecated and will be removed in a future version of pandas. Specify `datetime_is_numeric=True` to silence this warning and adopt the future behavior now.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_25172/1424112182.py:1: FutureWarning: Treating datetime data as categorical rather than numeric in `.describe` is deprecated and will be removed in a future version of pandas. Specify `datetime_is_numeric=True` to silence this warning and adopt the future behavior now.
   df.describe(exclude=[&#39;object&#39;])
 </pre></div>
 </div>
@@ -7498,7 +7609,7 @@ Name: created_at, dtype: object
 </div>
 </section>
 <section id="id2">
-<h3>Plotting<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Plotting<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Not needed in newest Pandas version</span>
@@ -7510,7 +7621,7 @@ Name: created_at, dtype: object
 </div>
 </div>
 <section id="histograms">
-<h4>Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">¶</a></h4>
+<h4>Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">#</a></h4>
 <p>They are useful to see the distribution of a certain variable in your dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7589,7 +7700,7 @@ Name: created_at, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_229_0.png" src="../_images/4_PandasDataWrangling_229_0.png" />
+<img alt="../_images/3270aab371075e634ff7893d36959403b817e445c14a69c0809e9f3742f900cc.png" src="../_images/3270aab371075e634ff7893d36959403b817e445c14a69c0809e9f3742f900cc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7604,7 +7715,7 @@ Name: created_at, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_230_0.png" src="../_images/4_PandasDataWrangling_230_0.png" />
+<img alt="../_images/df6cab5b2ec6d76907b1c51eb0de5cc2e89078641fda3645e9eba5dd757e099d.png" src="../_images/df6cab5b2ec6d76907b1c51eb0de5cc2e89078641fda3645e9eba5dd757e099d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7626,7 +7737,7 @@ Name: created_at, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_232_0.png" src="../_images/4_PandasDataWrangling_232_0.png" />
+<img alt="../_images/df3cf930c45c7a973397ad019481f361773a3a0763a4f3350a6a8149d6ebebfc.png" src="../_images/df3cf930c45c7a973397ad019481f361773a3a0763a4f3350a6a8149d6ebebfc.png" />
 </div>
 </div>
 <p>So far we have used directly <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to generate our plots.</p>
@@ -7652,12 +7763,12 @@ Name: created_at, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_237_0.png" src="../_images/4_PandasDataWrangling_237_0.png" />
+<img alt="../_images/084511e1a0d590099dc15473c703a680e9bd612c8d33204ad129cb039366647f.png" src="../_images/084511e1a0d590099dc15473c703a680e9bd612c8d33204ad129cb039366647f.png" />
 </div>
 </div>
 </section>
 <section id="bar-charts">
-<h4>Bar charts<a class="headerlink" href="#bar-charts" title="Permalink to this headline">¶</a></h4>
+<h4>Bar charts<a class="headerlink" href="#bar-charts" title="Permalink to this headline">#</a></h4>
 <p>They are useful to plot categorical data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7712,17 +7823,17 @@ Name: created_at, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_242_0.png" src="../_images/4_PandasDataWrangling_242_0.png" />
+<img alt="../_images/6ae0ab4df248215cfa0b67b649743836179afcabdcf7c0c9aeb1f420907a6d17.png" src="../_images/6ae0ab4df248215cfa0b67b649743836179afcabdcf7c0c9aeb1f420907a6d17.png" />
 </div>
 </div>
 </section>
 <section id="box-plots">
-<h4>Box plots<a class="headerlink" href="#box-plots" title="Permalink to this headline">¶</a></h4>
+<h4>Box plots<a class="headerlink" href="#box-plots" title="Permalink to this headline">#</a></h4>
 <img alt="edaboxplot" src="../_images/eda-boxplot.png" />
 </section>
 </section>
 <section id="outliers-missing-values">
-<h3>Outliers, missing values<a class="headerlink" href="#outliers-missing-values" title="Permalink to this headline">¶</a></h3>
+<h3>Outliers, missing values<a class="headerlink" href="#outliers-missing-values" title="Permalink to this headline">#</a></h3>
 <p>An <em>outlier</em> is an observation far from the center of mass of the distribution. It might be an error or a genuine observation: this distinction requires domain knowledge. Outliers infuence the outcomes of several statistics and machine learning methods: it is important to decide how to deal with them.</p>
 <p>A <em>missing value</em> is an observation without a value. There can be many reasons for a missing value: the value might not exist (hence its absence is informative and it should be left empty) or might not be known (hence the value is existing but missing in the dataset and it should be marked as NA).</p>
 <div class="tip admonition">
@@ -7869,7 +7980,7 @@ Name: created_at, dtype: object
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
-<img alt="../_images/4_PandasDataWrangling_247_1.png" src="../_images/4_PandasDataWrangling_247_1.png" />
+<img alt="../_images/21daa98e559a1624e7e4f1703a3563e7187135af63bc708155a7996ba8f26cce.png" src="../_images/21daa98e559a1624e7e4f1703a3563e7187135af63bc708155a7996ba8f26cce.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -8072,7 +8183,7 @@ Name: 0.25, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_253_0.png" src="../_images/4_PandasDataWrangling_253_0.png" />
+<img alt="../_images/222445ee1f32d38efb1a2ae2530266e21c7ae754c16bedce554f13ed37f42cde.png" src="../_images/222445ee1f32d38efb1a2ae2530266e21c7ae754c16bedce554f13ed37f42cde.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -8094,12 +8205,12 @@ Name: 0.25, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4_PandasDataWrangling_254_0.png" src="../_images/4_PandasDataWrangling_254_0.png" />
+<img alt="../_images/679adf2862f5588104cde56b938f31dd68b1e9757e55166e861556db63462878.png" src="../_images/679adf2862f5588104cde56b938f31dd68b1e9757e55166e861556db63462878.png" />
 </div>
 </div>
 </section>
 <section id="exercise-1">
-<h3>Exercise 1.<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 1.<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Create a function that calculates the frequency of hashtags in tweets.</p></li>
 <li><p>Test it on toy examples, to make sure it works.</p></li>
@@ -8115,7 +8226,7 @@ Name: 0.25, dtype: float64
 </div>
 </section>
 <section id="exercise-2">
-<h3>Exercise 2.<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 2.<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h3>
 <p>Read the file <code class="docutils literal notranslate"><span class="pre">data/adams-hhgttg.txt</span></code> and:</p>
 <ul class="simple">
 <li><p>Count the number of occurrences per distinct word in the text.</p></li>
@@ -8156,9 +8267,11 @@ Name: 0.25, dtype: float64
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="3_ReadingAndWritingFiles.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -8174,24 +8287,28 @@ Name: 0.25, dtype: float64
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joy Crosbie, Nils Peters<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Joy Crosbie, Nils Peters<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

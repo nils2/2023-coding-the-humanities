@@ -8,8 +8,9 @@
 
     <title>Python basics 1 &#8212; 2023-coding-the-humanities</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,12 +20,8 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -32,7 +29,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -40,18 +38,17 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -64,7 +61,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +84,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to Coding the Humanities
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Coding the Humanities
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Setup
  </span>
@@ -184,130 +197,228 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Week 6 (Optional)
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="6_WebScraping.html">
-   Web Scraping and APIs
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Week 7 (Optional)
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="7_WorkingTexts.html">
-   Working with texts
-  </a>
- </li>
-</ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/myst-notebooks/1_Basics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/myst-notebooks/1_Basics.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/bloemj/2022-coding-the-humanities"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/bloemj/2022-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/1_Basics.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/nils2/2023-coding-the-humanities/blob/master/myst-notebooks/1_Basics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/1_Basics.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/myst-notebooks/1_Basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/myst-notebooks/1_Basics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Python basics 1
@@ -585,12 +696,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Python basics 1</h1>
@@ -884,14 +994,15 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="python-basics-1">
-<h1>Python basics 1<a class="headerlink" href="#python-basics-1" title="Permalink to this headline">¶</a></h1>
+<h1>Python basics 1<a class="headerlink" href="#python-basics-1" title="Permalink to this headline">#</a></h1>
 <p>This notebook contains the basics of Python. Use it as a reference whenever needed.</p>
 <section id="the-zen-of-python">
-<h2>The Zen of Python<a class="headerlink" href="#the-zen-of-python" title="Permalink to this headline">¶</a></h2>
+<h2>The Zen of Python<a class="headerlink" href="#the-zen-of-python" title="Permalink to this headline">#</a></h2>
 <p>The 20 principles that influences the design of Python.</p>
 <p>Written in the 1999, they have been included as the 20th entry of the Python Enhancement Proposals (a.k.a. <a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">PEP 20</a>).</p>
 <div class="cell docutils container">
@@ -933,7 +1044,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 <p>Taken from: <a class="reference external" href="https://en.wikipedia.org/wiki/Guido_van_Rossum">https://en.wikipedia.org/wiki/Guido_van_Rossum</a></p>
 </section>
 <section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h2>
 <p><em>See the previous <a class="reference internal" href="0_HelloWorld.html"><span class="doc std std-doc">0. Hello World notebook</span></a> to check if your Python installation is up and running</em></p>
 <p>The simplest way is to type commands directly in the <strong>Interactive</strong> IPython shell:</p>
 <div class="cell docutils container">
@@ -965,7 +1076,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </div>
 </section>
 <section id="variables">
-<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h2>
 <p>Variables are reserved <strong>memory locations</strong> used by a computer program.</p>
 <p>Each variable is associated with an <strong>identifier</strong> (i.e. a name). Python restricts the naming possibilities of a variable:</p>
 <ul class="simple">
@@ -1065,7 +1176,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </div>
 <p>it is better to stay away from naming your variables this way! What counts is that you give the variable a name that makes sense. But, make sure that they start with a lowercase letter! (= naming convention)</p>
 <section id="declaring-variables">
-<h3>Declaring variables<a class="headerlink" href="#declaring-variables" title="Permalink to this headline">¶</a></h3>
+<h3>Declaring variables<a class="headerlink" href="#declaring-variables" title="Permalink to this headline">#</a></h3>
 <p>Python does not require variables to be declared explicitly, unlike what is common in some other programming languages. In Python, variables are created when you first assign a value to them and you can declare them on the go and where needed.</p>
 <p>The symbol <code class="docutils literal notranslate"><span class="pre">=</span></code> is used to assign values to variables.</p>
 <div class="cell docutils container">
@@ -1105,7 +1216,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </div>
 </section>
 <section id="changing-variables">
-<h3>Changing variables<a class="headerlink" href="#changing-variables" title="Permalink to this headline">¶</a></h3>
+<h3>Changing variables<a class="headerlink" href="#changing-variables" title="Permalink to this headline">#</a></h3>
 <p>You can change the value that is assigned to a variable. In Python, this is NOT restricted to a change within the same datatype.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1164,7 +1275,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [16],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">unlucky_number</span> <span class="o">=</span> <span class="mi">13</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;My unlucky number is &quot;</span> <span class="o">+</span> <span class="n">unlucky_number</span>  <span class="c1"># what is the datatype of unlucky_number?</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1179,7 +1290,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </section>
 <hr class="docutils" />
 <section id="built-in-data-types">
-<h2>Built-in data types<a class="headerlink" href="#built-in-data-types" title="Permalink to this headline">¶</a></h2>
+<h2>Built-in data types<a class="headerlink" href="#built-in-data-types" title="Permalink to this headline">#</a></h2>
 <p>Python natively supports the following basic types:</p>
 <ul class="simple">
 <li><p><strong>Boolean</strong>: <em>bool</em></p></li>
@@ -1190,43 +1301,43 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 <li><p><strong>Dictionaries</strong></p></li>
 </ul>
 <section id="mutable-vs-immutable-objects">
-<h3>Mutable vs. Immutable objects<a class="headerlink" href="#mutable-vs-immutable-objects" title="Permalink to this headline">¶</a></h3>
+<h3>Mutable vs. Immutable objects<a class="headerlink" href="#mutable-vs-immutable-objects" title="Permalink to this headline">#</a></h3>
 <p>Python data types can be organized by distinguishing those types whose objects can change after their creation (<strong>Mutable</strong>) and those that do not admit such possibility (<strong>Immutable</strong>). If a variable is of a mutable datatype, you can <em>overwrite</em> its value, instead of creating a new object. Assigning a new value to an existing variable is always possible.</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Immutables</p></th>
-<th class="text-align:center head"><p>Mutables</p></th>
+<tr class="row-odd"><th class="text-center head"><p>Immutables</p></th>
+<th class="text-center head"><p>Mutables</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p>Numerical</p></td>
-<td class="text-align:center"><p>-</p></td>
+<tr class="row-even"><td class="text-center"><p>Numerical</p></td>
+<td class="text-center"><p>-</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>String</p></td>
-<td class="text-align:center"><p>-</p></td>
+<tr class="row-odd"><td class="text-center"><p>String</p></td>
+<td class="text-center"><p>-</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>Tuple</p></td>
-<td class="text-align:center"><p>List</p></td>
+<tr class="row-even"><td class="text-center"><p>Tuple</p></td>
+<td class="text-center"><p>List</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>Frozenset</p></td>
-<td class="text-align:center"><p>Set</p></td>
+<tr class="row-odd"><td class="text-center"><p>Frozenset</p></td>
+<td class="text-center"><p>Set</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>-</p></td>
-<td class="text-align:center"><p>Dictionary</p></td>
+<tr class="row-even"><td class="text-center"><p>-</p></td>
+<td class="text-center"><p>Dictionary</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="nonetype">
-<h3>NoneType<a class="headerlink" href="#nonetype" title="Permalink to this headline">¶</a></h3>
+<h3>NoneType<a class="headerlink" href="#nonetype" title="Permalink to this headline">#</a></h3>
 <p>It has one sole value: <code class="docutils literal notranslate"><span class="pre">None</span></code>. It is used to represent the absence of a value.</p>
 </section>
 <section id="bool">
-<h3>bool<a class="headerlink" href="#bool" title="Permalink to this headline">¶</a></h3>
+<h3>bool<a class="headerlink" href="#bool" title="Permalink to this headline">#</a></h3>
 <p>Boolean logical values, can be <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p>To be used to represent the truth or falsity of some condition.</p>
 <section id="boolean-operators">
-<h4>Boolean Operators<a class="headerlink" href="#boolean-operators" title="Permalink to this headline">¶</a></h4>
+<h4>Boolean Operators<a class="headerlink" href="#boolean-operators" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p><strong>and</strong>: conjunction</p></li>
 <li><p><strong>or</strong>: inclusive disjunction</p></li>
@@ -1287,7 +1398,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </section>
 </section>
 <section id="numerical-types">
-<h3>Numerical Types<a class="headerlink" href="#numerical-types" title="Permalink to this headline">¶</a></h3>
+<h3>Numerical Types<a class="headerlink" href="#numerical-types" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>int</strong>: integers, e.g. <code class="docutils literal notranslate"><span class="pre">42</span></code></p></li>
 <li><p><strong>long</strong>: long integers of non-limited length, e.g. <code class="docutils literal notranslate"><span class="pre">15L</span></code></p></li>
@@ -1296,7 +1407,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </ul>
 <p>Most likely, the only two datatypes you’ll be using are integer (<code class="docutils literal notranslate"><span class="pre">int()</span></code>) and float (<code class="docutils literal notranslate"><span class="pre">float()</span></code>).</p>
 <section id="using-python-as-a-calculator">
-<h4>Using Python as a Calculator<a class="headerlink" href="#using-python-as-a-calculator" title="Permalink to this headline">¶</a></h4>
+<h4>Using Python as a Calculator<a class="headerlink" href="#using-python-as-a-calculator" title="Permalink to this headline">#</a></h4>
 <p>The simplest way to perform calculations with Python is by using the interactive shell as a fancy calculator.</p>
 <p>Some of the operations supported by all the numeric types are:</p>
 <div class="cell docutils container">
@@ -1433,7 +1544,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </section>
 <hr class="docutils" />
 <section id="quiz">
-<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">#</a></h3>
 <p>Calculate the number of seconds we’re going to spend in this classroom together.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1446,7 +1557,7 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </section>
 <hr class="docutils" />
 <section id="id1">
-<h2>Changing variables<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Changing variables<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>While the previous operators produce new variables, the following perform the operation <strong>in-place</strong>.</p>
 <p>That is, the variable itself is changed in the result of the process.</p>
 <div class="cell docutils container">
@@ -1549,38 +1660,38 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </div>
 </div>
 <section id="relational-operators">
-<h3>Relational Operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">¶</a></h3>
+<h3>Relational Operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">#</a></h3>
 <p>Comparisons are supported by all objects. The main comparison operators are:</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Operator</p></th>
-<th class="text-align:center head"><p>Semantics</p></th>
+<tr class="row-odd"><th class="text-center head"><p>Operator</p></th>
+<th class="text-center head"><p>Semantics</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p>==</p></td>
-<td class="text-align:center"><p>equal</p></td>
+<tr class="row-even"><td class="text-center"><p>==</p></td>
+<td class="text-center"><p>equal</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>!=</p></td>
-<td class="text-align:center"><p>not equal</p></td>
+<tr class="row-odd"><td class="text-center"><p>!=</p></td>
+<td class="text-center"><p>not equal</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>&lt;</p></td>
-<td class="text-align:center"><p>less-than</p></td>
+<tr class="row-even"><td class="text-center"><p>&lt;</p></td>
+<td class="text-center"><p>less-than</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>&lt;=</p></td>
-<td class="text-align:center"><p>less-than or equal to</p></td>
+<tr class="row-odd"><td class="text-center"><p>&lt;=</p></td>
+<td class="text-center"><p>less-than or equal to</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>&gt;</p></td>
-<td class="text-align:center"><p>greater-then</p></td>
+<tr class="row-even"><td class="text-center"><p>&gt;</p></td>
+<td class="text-center"><p>greater-then</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>&gt;=</p></td>
-<td class="text-align:center"><p>greater-then or equal to</p></td>
+<tr class="row-odd"><td class="text-center"><p>&gt;=</p></td>
+<td class="text-center"><p>greater-then or equal to</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>is</p></td>
-<td class="text-align:center"><p>object identity</p></td>
+<tr class="row-even"><td class="text-center"><p>is</p></td>
+<td class="text-center"><p>object identity</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>is not</p></td>
-<td class="text-align:center"><p>negated object identity</p></td>
+<tr class="row-odd"><td class="text-center"><p>is not</p></td>
+<td class="text-center"><p>negated object identity</p></td>
 </tr>
 </tbody>
 </table>
@@ -1642,7 +1753,7 @@ False
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
 &lt;&gt;:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
-/tmp/ipykernel_39665/1224863327.py:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+/tmp/ipykernel_25093/1224863327.py:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
   print(False is 0)
 </pre></div>
 </div>
@@ -1662,7 +1773,7 @@ False
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
 &lt;&gt;:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
-/tmp/ipykernel_39665/4245534013.py:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+/tmp/ipykernel_25093/4245534013.py:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
   print(True is 1)
 </pre></div>
 </div>
@@ -1698,7 +1809,7 @@ False
 </div>
 </section>
 <section id="id2">
-<h3>Quiz<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>When to use the <code class="docutils literal notranslate"><span class="pre">is</span></code> statement? And how does it differ from <code class="docutils literal notranslate"><span class="pre">==</span></code>? Can you illustrate this with an example? How is this related to Python’s memory management?</p>
 <div class="tip admonition">
 <p class="admonition-title">Tip</p>
@@ -1716,56 +1827,56 @@ False
 </section>
 <hr class="docutils" />
 <section id="iterables-sequences">
-<h2>Iterables / sequences<a class="headerlink" href="#iterables-sequences" title="Permalink to this headline">¶</a></h2>
+<h2>Iterables / sequences<a class="headerlink" href="#iterables-sequences" title="Permalink to this headline">#</a></h2>
 <p>We will focus on three types of sequences: <strong>strings</strong>, <strong>lists</strong> and <strong>tuples</strong> (see the <a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#sequence-types-list-tuple-range">documentation</a> for the full list).</p>
 <p>Most sequence types support the following operations (where <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">t</span></code> are sequences, <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> integers):</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Operation</p></th>
-<th class="text-align:center head"><p>Result</p></th>
+<tr class="row-odd"><th class="text-center head"><p>Operation</p></th>
+<th class="text-center head"><p>Result</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p>x in s</p></td>
-<td class="text-align:center"><p>True if an item of s is equal to x</p></td>
+<tr class="row-even"><td class="text-center"><p>x in s</p></td>
+<td class="text-center"><p>True if an item of s is equal to x</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>x not in s</p></td>
-<td class="text-align:center"><p>False if an item of s is equal to x</p></td>
+<tr class="row-odd"><td class="text-center"><p>x not in s</p></td>
+<td class="text-center"><p>False if an item of s is equal to x</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>s + t</p></td>
-<td class="text-align:center"><p>Concatenation of s and t</p></td>
+<tr class="row-even"><td class="text-center"><p>s + t</p></td>
+<td class="text-center"><p>Concatenation of s and t</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>s * n</p></td>
-<td class="text-align:center"><p>add s to itself n times (negative n are treated as 0)</p></td>
+<tr class="row-odd"><td class="text-center"><p>s * n</p></td>
+<td class="text-center"><p>add s to itself n times (negative n are treated as 0)</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>s[i]</p></td>
-<td class="text-align:center"><p>ith item of s, origin 0</p></td>
+<tr class="row-even"><td class="text-center"><p>s[i]</p></td>
+<td class="text-center"><p>ith item of s, origin 0</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>s[i:j]</p></td>
-<td class="text-align:center"><p>slice of s from i to j</p></td>
+<tr class="row-odd"><td class="text-center"><p>s[i:j]</p></td>
+<td class="text-center"><p>slice of s from i to j</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>s[i:j:k]</p></td>
-<td class="text-align:center"><p>slice of s from i to j with step k</p></td>
+<tr class="row-even"><td class="text-center"><p>s[i:j:k]</p></td>
+<td class="text-center"><p>slice of s from i to j with step k</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>len(s)</p></td>
-<td class="text-align:center"><p>length of s</p></td>
+<tr class="row-odd"><td class="text-center"><p>len(s)</p></td>
+<td class="text-center"><p>length of s</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>min(s)</p></td>
-<td class="text-align:center"><p>smallest item of s</p></td>
+<tr class="row-even"><td class="text-center"><p>min(s)</p></td>
+<td class="text-center"><p>smallest item of s</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>max(s)</p></td>
-<td class="text-align:center"><p>largest item of s</p></td>
+<tr class="row-odd"><td class="text-center"><p>max(s)</p></td>
+<td class="text-center"><p>largest item of s</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>s.index(x)</p></td>
-<td class="text-align:center"><p>index of the first occurrence of x in s</p></td>
+<tr class="row-even"><td class="text-center"><p>s.index(x)</p></td>
+<td class="text-center"><p>index of the first occurrence of x in s</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>s.count(x)</p></td>
-<td class="text-align:center"><p>total number of occurrences of x in s</p></td>
+<tr class="row-odd"><td class="text-center"><p>s.count(x)</p></td>
+<td class="text-center"><p>total number of occurrences of x in s</p></td>
 </tr>
 </tbody>
 </table>
 <section id="lists">
-<h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">#</a></h3>
 <p>Lists are <strong>ordered</strong> <strong>mutable</strong> sequences of <strong>heterogeneous</strong> elements.</p>
 <p>In the Python language, lists are defined by square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> and their elements are separated by commas.</p>
 <div class="cell docutils container">
@@ -1837,7 +1948,7 @@ False
 </div>
 </div>
 <section id="strings">
-<h4>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h4>
+<h4>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">#</a></h4>
 <p>In some ways, string behave the same as lists. For instance, you can check the length of a string, or check if a character sequence is part of a string:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1867,7 +1978,7 @@ False
 </div>
 </section>
 <section id="list-concatenation">
-<h4>List concatenation<a class="headerlink" href="#list-concatenation" title="Permalink to this headline">¶</a></h4>
+<h4>List concatenation<a class="headerlink" href="#list-concatenation" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Concatenation</span>
@@ -1932,7 +2043,7 @@ False
 </div>
 </section>
 <section id="lists-are-ordered">
-<h4>Lists are ordered<a class="headerlink" href="#lists-are-ordered" title="Permalink to this headline">¶</a></h4>
+<h4>Lists are ordered<a class="headerlink" href="#lists-are-ordered" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lists are ordered, elements can be recalled by using their index</span>
@@ -1979,7 +2090,7 @@ False
 </section>
 </section>
 <section id="id3">
-<h3>Quiz<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make one list out of these two lists:</span>
@@ -2015,14 +2126,14 @@ False
 </div>
 <hr class="docutils" />
 <section id="slicing">
-<h4>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h4>
+<h4>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">#</a></h4>
 <p>Slicing is a <strong>computationally fast</strong> way to extract a portion of a sequence in order to create a new sequence.</p>
 <p>Slicing Notation works in the following way:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">:</span><span class="n">step</span><span class="p">]</span>
 </pre></div>
 </div>
 <section id="slicing-rules">
-<h5>Slicing rules<a class="headerlink" href="#slicing-rules" title="Permalink to this headline">¶</a></h5>
+<h5>Slicing rules<a class="headerlink" href="#slicing-rules" title="Permalink to this headline">#</a></h5>
 <ul class="simple">
 <li><p>The slice of the sequence <code class="docutils literal notranslate"><span class="pre">s</span></code> from <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">stop</span></code> is defined as the sequence of items with index <code class="docutils literal notranslate"><span class="pre">k</span></code> such that <code class="docutils literal notranslate"><span class="pre">start</span></code> &lt;= <code class="docutils literal notranslate"><span class="pre">k</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">stop</span></code>.</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">start</span></code> or <code class="docutils literal notranslate"><span class="pre">stop</span></code> is greater than len(<code class="docutils literal notranslate"><span class="pre">s</span></code>), use len(<code class="docutils literal notranslate"><span class="pre">s</span></code>).</p></li>
@@ -2126,7 +2237,7 @@ False
 </section>
 <hr class="docutils" />
 <section id="id4">
-<h3>Quiz<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>The following code creates a list whose length is a-priori unknown. Extract:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. the last element of the list by using a positive index
 2. the first element of the list by using a negative index
@@ -2148,7 +2259,7 @@ False
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[24, 11, 72, 3, 79, 64, 38, 3, 73, 7]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[47, 46, 23, 29, 6, 81, 9, 32, 14, 22]
 </pre></div>
 </div>
 </div>
@@ -2183,7 +2294,7 @@ False
 </div>
 <hr class="docutils" />
 <section id="lists-are-mutable">
-<h4>Lists are mutable<a class="headerlink" href="#lists-are-mutable" title="Permalink to this headline">¶</a></h4>
+<h4>Lists are mutable<a class="headerlink" href="#lists-are-mutable" title="Permalink to this headline">#</a></h4>
 <p>Lists methods allows you to manipulate the elements stored in the list quickly and effectively. The method <code class="docutils literal notranslate"><span class="pre">.append()</span></code> on the list allows you to add an element at the end of that list. This is a method that you’ll be using often!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2297,7 +2408,7 @@ False
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">79</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [79],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># This renders a TypeError</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
@@ -2341,7 +2452,7 @@ False
 </section>
 <hr class="docutils" />
 <section id="lists-of-numbers">
-<h4>Lists of numbers<a class="headerlink" href="#lists-of-numbers" title="Permalink to this headline">¶</a></h4>
+<h4>Lists of numbers<a class="headerlink" href="#lists-of-numbers" title="Permalink to this headline">#</a></h4>
 <p>Lists of numbers can be manipulated by additional functions, among which <code class="docutils literal notranslate"><span class="pre">max()</span></code>, <code class="docutils literal notranslate"><span class="pre">min()</span></code> and <code class="docutils literal notranslate"><span class="pre">sum()</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2364,7 +2475,7 @@ False
 </section>
 </section>
 <section id="id5">
-<h3>Quiz<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <p>Get the minimum and maximum number of the list below <em>without</em> using the <code class="docutils literal notranslate"><span class="pre">max()</span></code> and <code class="docutils literal notranslate"><span class="pre">min()</span></code> functions (e.g. by sorting and slicing).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2403,7 +2514,7 @@ False
 </section>
 <hr class="docutils" />
 <section id="tuples">
-<h3>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h3>
+<h3>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">#</a></h3>
 <p>Tuples are the <strong>immutable</strong> counterpart of the lists.</p>
 <p>They are defined by round brackets <code class="docutils literal notranslate"><span class="pre">()</span></code> and they mainly differ from the list in that they do not accept those methods that tries to manipulate its elements.</p>
 <div class="cell docutils container">
@@ -2447,7 +2558,7 @@ False
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">88</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [88],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># But, they cannot be replaced. This raises a TypeError error!</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">demo_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 
@@ -2459,7 +2570,7 @@ False
 <p>For now, just know that tuples are a datatype in Python. You’ll know when you need them further on in this course!</p>
 </section>
 <section id="id6">
-<h3>Strings<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>Strings<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
 <p>Strings are <strong>immutable</strong>, sequences of characters (so, they are <strong>homogeneous</strong>)</p>
 <p>In the Python language, strings are defined by single <code class="docutils literal notranslate"><span class="pre">'</span></code> or double quotes <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>,  and their elements are contiguous.</p>
 <div class="cell docutils container">
@@ -2598,25 +2709,25 @@ Noway!
 <p>Python escape sequences are introduced by the escape character <code class="docutils literal notranslate"><span class="pre">\</span></code>, whose goal is to signal the interpreter that the following character has an “unusual” interpretation. Here is a partial list:</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Escape Sequence</p></th>
-<th class="text-align:center head"><p>Meaning</p></th>
+<tr class="row-odd"><th class="text-center head"><p>Escape Sequence</p></th>
+<th class="text-center head"><p>Meaning</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p>\|  backslash</p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>\|  backslash</p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>'</p></td>
-<td class="text-align:center"><p>single quote</p></td>
+<tr class="row-odd"><td class="text-center"><p>'</p></td>
+<td class="text-center"><p>single quote</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>\b</p></td>
-<td class="text-align:center"><p>backspace</p></td>
+<tr class="row-even"><td class="text-center"><p>\b</p></td>
+<td class="text-center"><p>backspace</p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>\n</p></td>
-<td class="text-align:center"><p>new line</p></td>
+<tr class="row-odd"><td class="text-center"><p>\n</p></td>
+<td class="text-center"><p>new line</p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>\t</p></td>
-<td class="text-align:center"><p>horizontal tab</p></td>
+<tr class="row-even"><td class="text-center"><p>\t</p></td>
+<td class="text-center"><p>horizontal tab</p></td>
 </tr>
 </tbody>
 </table>
@@ -2695,7 +2806,7 @@ And on the sand I wanna leave her again
 </div>
 </section>
 <section id="id7">
-<h3>Quiz<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <p>Run the cell below. Where do all the ‘\n’s come from?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2736,7 +2847,7 @@ And on the sand I wanna leave her again
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">106</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [106],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># But single characters cannot be replaced. This raises a TypeError. </span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">demo_string</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Melisandre&quot;</span>
 
@@ -2746,7 +2857,7 @@ And on the sand I wanna leave her again
 </div>
 </div>
 <section id="string-methods">
-<h4>String Methods<a class="headerlink" href="#string-methods" title="Permalink to this headline">¶</a></h4>
+<h4>String Methods<a class="headerlink" href="#string-methods" title="Permalink to this headline">#</a></h4>
 <p>Strings have a buch of dedicated methods (see the <a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html">documentation</a> for a complete list), that allows them to be both inspected or manipulated (they are not modified, rather a <strong>new object</strong> is returned).</p>
 <p>The following are commonly used the most:</p>
 <div class="cell docutils container">
@@ -2875,7 +2986,7 @@ Noway
 </div>
 </section>
 <section id="from-strings-to-lists">
-<h4>From strings to lists<a class="headerlink" href="#from-strings-to-lists" title="Permalink to this headline">¶</a></h4>
+<h4>From strings to lists<a class="headerlink" href="#from-strings-to-lists" title="Permalink to this headline">#</a></h4>
 <p>A string can be transformed into a list of string by splitting it on a given character. This is done through the <code class="docutils literal notranslate"><span class="pre">.split()</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2918,7 +3029,7 @@ Noway
 </div>
 </section>
 <section id="from-lists-to-strings">
-<h4>From lists to strings<a class="headerlink" href="#from-lists-to-strings" title="Permalink to this headline">¶</a></h4>
+<h4>From lists to strings<a class="headerlink" href="#from-lists-to-strings" title="Permalink to this headline">#</a></h4>
 <p>The inverse operation is possible, a list of strings can be joined by a single character using <code class="docutils literal notranslate"><span class="pre">join()</span></code> on another string. It’s argument is the list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2984,7 +3095,7 @@ Noway
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">121</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [121],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Raises a TypeError</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;This&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
@@ -2997,7 +3108,7 @@ Noway
 </section>
 <hr class="docutils" />
 <section id="sets">
-<h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
+<h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h3>
 <p>Sets are collections of <strong>unordered</strong> and <strong>distinct/unique</strong> objects.</p>
 <p>They are commonly used to test membership, to remove duplicates or to compute mathematical operations such as intersection, union, difference, and symmetric difference. Being unordered collections, they do not support indexing, slicing and any other sequence-like behavior. But, this  makes them extremely efficient.</p>
 <p>In Python, sets can be create beither by using the syntax  <code class="docutils literal notranslate"><span class="pre">set([])</span></code> or by using curly braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
@@ -3175,11 +3286,11 @@ True
 <p>Go over the other methods that can be used on a set. You can find them including examples here: <a class="reference external" href="https://www.w3schools.com/python/python_ref_set.asp">https://www.w3schools.com/python/python_ref_set.asp</a>. For sure, check out the <code class="docutils literal notranslate"><span class="pre">.update()</span></code> and <code class="docutils literal notranslate"><span class="pre">.isdisjoint()</span></code>.</p>
 </section>
 <section id="id8">
-<h3>Quiz<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
 </section>
 <hr class="docutils" />
 <section id="dictionaries">
-<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h3>
+<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">#</a></h3>
 <p>Dictionaries are <strong>associative arrays</strong> mapping <strong>immutable</strong> types (string, numbers, tuples…) to arbitrary objects of any kind (all datatypes you earlier saw, variables, functions, modules…). Intuitively, they can be thought as collections of objects that we can recall by means of a unique key.</p>
 <p>To visualize a Python dictionary you can think of a telephone book, in which people names are the unique keys that you use to retrieve difference kinds of information (phone numbers, street address, mail address…). The same telephone number, street address or other information can be present in the entries of more people, but a label cannot be associated with more than one entry.</p>
 <p>In Python, dictionaries are defined by curly brackets <code class="docutils literal notranslate"><span class="pre">{}</span></code>, in which key-value pairs are separated by commas and joint by colons.</p>
@@ -3289,9 +3400,9 @@ True
 </div>
 </section>
 <section id="id9">
-<h3>Quiz<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <p>What you’re actually doing by calling the dict that way, is calling the <code class="docutils literal notranslate"><span class="pre">.keys()</span></code> method. Try using the following methods below on the <code class="docutils literal notranslate"><span class="pre">color2kleur</span></code> dictionary:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.keys()</span></code> vs. just calling the dictionary by <code class="docutils literal notranslate"><span class="pre">color2kleur</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.values()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.items()</span></code></p></li>
@@ -3305,7 +3416,7 @@ True
 </div>
 </div>
 <section id="iterating-over-a-dictionary">
-<h4>Iterating over a Dictionary<a class="headerlink" href="#iterating-over-a-dictionary" title="Permalink to this headline">¶</a></h4>
+<h4>Iterating over a Dictionary<a class="headerlink" href="#iterating-over-a-dictionary" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over dictionary keys:</span>
@@ -3351,7 +3462,7 @@ True
 </section>
 <hr class="docutils" />
 <section id="type-casting">
-<h3>Type casting<a class="headerlink" href="#type-casting" title="Permalink to this headline">¶</a></h3>
+<h3>Type casting<a class="headerlink" href="#type-casting" title="Permalink to this headline">#</a></h3>
 <p>Sometimes, we may need to change the type of a variable.</p>
 <p>For instance, we may want to change a list into a set in order to delete all its repeated elements. A quick way to do so is to transform the list in a set.</p>
 <p>Other example may involve the <code class="docutils literal notranslate"><span class="pre">.join()</span></code> method that does not accept numbers. Conversion functions can be used to quickly switch numbers to strings. Sometimes, these conversion functions are built-in into a function, which is the case in the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function. It is basically applying the <code class="docutils literal notranslate"><span class="pre">str()</span></code> function on every object that you give as argument.</p>
@@ -3452,7 +3563,7 @@ True
 </div>
 </section>
 <section id="id10">
-<h3>Quiz<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h3>Quiz<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
 <p>The list <code class="docutils literal notranslate"><span class="pre">numbers</span></code> contains 21 integers, ranging from -10 to 10, unsorted.</p>
 <p>Create a new list containing only the positive numbers from the list. Use <code class="docutils literal notranslate"><span class="pre">.sort()</span></code>, <code class="docutils literal notranslate"><span class="pre">len()</span></code> and <code class="docutils literal notranslate"><span class="pre">round()</span></code></p>
 <div class="cell docutils container">
@@ -3474,9 +3585,9 @@ True
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h1>
 <section id="reading">
-<h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h2>
+<h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Check out number 8 of the Python Enhancement Proposals (PEP): <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a>. Try writing your code with PEP8 in mind.</p></li>
 <li><p><a class="reference external" href="https://www.cheatography.com/davechild/cheat-sheets/python/">Python Cheat Sheet</a>, which collects much of the syntax we used today.</p></li>
@@ -3484,9 +3595,9 @@ True
 </ul>
 </section>
 <section id="tasks">
-<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">#</a></h2>
 <section id="excercise-1">
-<h3>Excercise 1<a class="headerlink" href="#excercise-1" title="Permalink to this headline">¶</a></h3>
+<h3>Excercise 1<a class="headerlink" href="#excercise-1" title="Permalink to this headline">#</a></h3>
 <p>Italian nobles tends to have an awful lot of names. For instance, “Vittorio Emanuele di Savoia” (or “Vittorio” for close friends) has the 12 names listed in <code class="docutils literal notranslate"><span class="pre">full_name</span></code>.</p>
 <p>Can you find a pythonic way to eliminate the less used names from this string?</p>
 <div class="cell docutils container">
@@ -3505,11 +3616,11 @@ True
 </div>
 </section>
 <section id="exercise-2">
-<h3>Exercise 2.<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 2.<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h3>
 <p>The code in the next cell creates a variable called <code class="docutils literal notranslate"><span class="pre">zen_text</span></code>, and assigns it a nicely formatted version of the textual elements of the Zen of Python.</p>
 <ul class="simple">
 <li><p>Count the number of in this manifesto of:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Characters</p></li>
 <li><p>Words</p></li>
 <li><p>Unique words</p></li>
@@ -3534,7 +3645,7 @@ True
 </div>
 </section>
 <section id="exercise-3">
-<h3>Exercise 3.<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 3.<a class="headerlink" href="#exercise-3" title="Permalink to this headline">#</a></h3>
 <p>The dictionary in the following cell reports, for each Scrubs character, a dictionary mapping is given with the name of the actor, the age of the character and its credentials.</p>
 <p>Write code to answer the following questions:</p>
 <ul class="simple">
@@ -3580,7 +3691,7 @@ True
 </div>
 </section>
 <section id="exercise-4-assignment-week1">
-<h3>Exercise 4 Assignment Week1!<a class="headerlink" href="#exercise-4-assignment-week1" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise 4 Assignment Week1!<a class="headerlink" href="#exercise-4-assignment-week1" title="Permalink to this headline">#</a></h3>
 <p>A string is stored in the <code class="docutils literal notranslate"><span class="pre">coe_books</span></code> variable.</p>
 <ul class="simple">
 <li><p>How many different books of Jonathan Coe are listed?</p></li>
@@ -3640,9 +3751,11 @@ True
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="0_HelloWorld.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3658,24 +3771,28 @@ True
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joy Crosbie, Nils Peters<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Joy Crosbie, Nils Peters<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
