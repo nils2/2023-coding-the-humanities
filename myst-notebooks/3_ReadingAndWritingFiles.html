@@ -1,0 +1,1580 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Reading and writing files, JSON &#8212; 2023-coding-the-humanities</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Wrangling" href="4_PandasDataWrangling.html" />
+    <link rel="prev" title="Python basics 2 + Input / Output" href="2_InputOutput.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">2023-coding-the-humanities</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Coding the Humanities
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Setup
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setup.html">
+   Working environment setup
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 0
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="0_HelloWorld.html">
+   Getting started
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 1
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Basics.html">
+   Python basics 1
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 2
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_InputOutput.html">
+   Python basics 2 + Input / Output
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 3
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Reading and writing files, JSON
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 4
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_PandasDataWrangling.html">
+   Data Wrangling
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 5
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_WorkingTweets.html">
+   Working with Tweets
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/nils2/2023-coding-the-humanities/blob/master/myst-notebooks/3_ReadingAndWritingFiles.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nils2/2023-coding-the-humanities/issues/new?title=Issue%20on%20page%20%2Fmyst-notebooks/3_ReadingAndWritingFiles.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/myst-notebooks/3_ReadingAndWritingFiles.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/myst-notebooks/3_ReadingAndWritingFiles.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Reading and writing files, JSON
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contents">
+     Contents:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#file-input-output">
+     File Input/Output
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#files-in-colab-repeated-from-notebook-2">
+       Files in Colab (repeated from notebook 2)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#manually-creating-folders-and-files">
+         Manually creating folders and files
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#permanently-saving-your-files-google-drive">
+         Permanently saving your files: Google Drive
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#opening-a-file">
+       Opening a file
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-with-statement">
+       The with statement
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tokenization-making-sense-of-text-files">
+       Tokenization: Making sense of text files
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quiz">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-files-repeated-from-notebook-2">
+     Writing files (repeated from notebook 2)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#looping-through-folders-and-files-more-info">
+     Looping through folders and files (more info)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-and-writing-data-in-json-and-csv">
+   Reading and writing data in JSON and CSV
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json">
+     JSON
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1-previously-exercise-6-in-notebook-2">
+     Exercise 1 (previously Exercise 6 in Notebook 2)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Reading and writing files, JSON</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Reading and writing files, JSON
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contents">
+     Contents:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#file-input-output">
+     File Input/Output
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#files-in-colab-repeated-from-notebook-2">
+       Files in Colab (repeated from notebook 2)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#manually-creating-folders-and-files">
+         Manually creating folders and files
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#permanently-saving-your-files-google-drive">
+         Permanently saving your files: Google Drive
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#opening-a-file">
+       Opening a file
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-with-statement">
+       The with statement
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tokenization-making-sense-of-text-files">
+       Tokenization: Making sense of text files
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quiz">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-files-repeated-from-notebook-2">
+     Writing files (repeated from notebook 2)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#looping-through-folders-and-files-more-info">
+     Looping through folders and files (more info)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-and-writing-data-in-json-and-csv">
+   Reading and writing data in JSON and CSV
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json">
+     JSON
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Quiz
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1-previously-exercise-6-in-notebook-2">
+     Exercise 1 (previously Exercise 6 in Notebook 2)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="reading-and-writing-files-json">
+<h1>Reading and writing files, JSON<a class="headerlink" href="#reading-and-writing-files-json" title="Permalink to this headline">#</a></h1>
+<section id="contents">
+<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>File Input/Output</p></li>
+<li><p>Reading and writing JSON</p></li>
+</ul>
+</section>
+<section id="file-input-output">
+<h2>File Input/Output<a class="headerlink" href="#file-input-output" title="Permalink to this headline">#</a></h2>
+<p>A huge portion of our input data will come from files that we have stored on our computer (on the file system). A lot of analysis of these files is done in memory in Python, when working with them. We have to save them back to the file system to store the results. So, mastering the art of reading and writing is crucial in programming.</p>
+<p>Until now, we have run stuff (almost instantly) in our Jupyter Notebooks, but imagine that we write code that takes a couple of ours to run on a large collection of files. Then we want to save the result, either for further analysis, or to make these files available (i.e. sharing) in your research.</p>
+<section id="files-in-colab-repeated-from-notebook-2">
+<h3>Files in Colab (repeated from notebook 2)<a class="headerlink" href="#files-in-colab-repeated-from-notebook-2" title="Permalink to this headline">#</a></h3>
+<p>In these examples, we will work with a file referred to as “data/adams-hhgttg.txt”. This means there should be a directory called “Data” and inside of that there should be the file “adams-hhgttg.txt”. You will find this in the course repository in the Notebooks directory. Obtain this file either by downloading the course repository and finding it there, or opening it on Github and saving the raw file.</p>
+<img alt="gitdownload2" src="../_images/git-download.png" />
+<p>In Colab, you can view and edit the file system by clicking on the “Files” icon on the left side. You will see the file system of your Colab session there with a directory called “sample_data”. You can make directories and upload files here.</p>
+<p>Normally, you cannot upload a directory full of files, but there is a trick, which we will use here: you can upload zip files (containing multiple files and directories) and then unzip them.</p>
+<p>Find the “data” directory in the repository that you downloaded, and compress (zip) it.</p>
+<p>On Windows, this is unintuitively done by sending it to a compressed folder:</p>
+<img alt="howtozip2" src="../_images/how-to-zip.png" />
+<p>On Apple, it is done by right-clicking on “folder name” and choosing the option ‘Compress “folder name”’</p>
+<p>Then, in Colab’s Files window, click “Upload to session storage” and upload your new zip file.</p>
+<p>Next, you can unzip it by running this code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>unzip data.zip
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>unzip:  cannot find or open data.zip, data.zip.zip or data.zip.ZIP.
+</pre></div>
+</div>
+</div>
+</div>
+<p>(This assumes your file is named data.zip, change the command if not)</p>
+<p>Now, you will have the directory with the data files of the course in your Colab session, but Colab doesn’t always show the change immediately. <strong>If you do not see it yet, click the “Refresh” button</strong> (next to the Upload to session storage button) to show the change you just made. You should now have a directory called “Data” in your session and inside of that there should be the file “adams-hhgttg.txt”, among other files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Colab sessions are temporary - the next time you load Colab to work on this notebook, you will have to upload your Data zip file and unzip it again.</p>
+</div>
+<section id="manually-creating-folders-and-files">
+<h4>Manually creating folders and files<a class="headerlink" href="#manually-creating-folders-and-files" title="Permalink to this headline">#</a></h4>
+<p>Besides the “sample_data” and “data” that you now have, you can make another directory by right-clicking somewhere in this file system window and choosing “New folder”. For example, create a folder called Stuff for your code’s output.</p>
+</section>
+<section id="permanently-saving-your-files-google-drive">
+<h4>Permanently saving your files: Google Drive<a class="headerlink" href="#permanently-saving-your-files-google-drive" title="Permalink to this headline">#</a></h4>
+<p>There is also a more permanent solution, which is to link your Google Drive to your Colab session. You can do it by clicking the “Mount Drive” button in the Files window, or with this code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google.colab&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the Files window, you will now see an additional directory called Drive. In this directory will be the contents of your Google Drive. If you put your data there, for example in a directory called “data”, you will be able to access this from Colab. It will be located on the path <code class="docutils literal notranslate"><span class="pre">drive/data/file.txt</span></code>. Anything you put on Google Drive will still be there next time you open Colab, as long as you link your session to Google Drive again.</p>
+</section>
+</section>
+<section id="opening-a-file">
+<h3>Opening a file<a class="headerlink" href="#opening-a-file" title="Permalink to this headline">#</a></h3>
+<p>The following code opens a file in our filesystem, prints the first 10 lines and closes the file. Please note that this file must exist in your Colab session (when running on Colab) on your computer (when running locally).</p>
+<p>If you are working locally and you have only have downloaded this notebook, go back to the repository and download the file to the appropriate path (or change the path below).</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>The code below shows you how the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function works. It’s better to use a <code class="docutils literal notranslate"><span class="pre">with</span></code> block (see below), which does this opening and closing for you.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/adams-hhgttg.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="c1">#If you have put the file somewhere else, such as on your Drive, you should modify the path to open.</span>
+<span class="c1">#For example to &#39;/drive/data/adams-hhgttg.txt&#39;. Otherwise, you will get a FileNotFound error when running this code.</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">infile</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Hitch Hiker&#39;s Guide to the Galaxy 
+
+
+
+for Jonny Brock and Clare Gorst 
+
+and all other Arlingtoniansfor tea, sympathy, and a sofa
+
+
+
+
+
+
+
+Far out in the uncharted backwaters of the unfashionable  end  of
+
+the  western  spiral  arm  of  the Galaxy lies a small unregarded
+
+yellow sun.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The key passage here is the one in which the <code class="docutils literal notranslate"><span class="pre">open()</span></code> function opens a file and return a <strong>file object</strong> (hint: try printing the type of <code class="docutils literal notranslate"><span class="pre">infile</span></code>), and it is commonly used with the following three parameters: the <strong>name of the file</strong> that we want to open, the <strong>mode</strong> and the <strong>encoding</strong>.</p>
+<ul class="simple">
+<li><p><strong>filename</strong>: the name of the file to open, this corresponds to the full/relative path to the file from the notebook.</p></li>
+<li><p>the <strong>mode</strong> in which we want to open a file: the most commonly used values are <code class="docutils literal notranslate"><span class="pre">r</span></code> for <strong>reading</strong> (default, which means that you don’t have to put this in explicitly), <code class="docutils literal notranslate"><span class="pre">w</span></code> for <strong>writing</strong> (overwriting existing files), and <code class="docutils literal notranslate"><span class="pre">a</span></code> for <strong>appending</strong>. (Note that <a class="reference external" href="https://docs.python.org/3/library/functions.html#open">the documentation</a> report mode values that may be necessary in some exceptional case)</p></li>
+<li><p><strong>encoding</strong>: which mapping of string to code points (conversion to bytes) to use, more on this later.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Every opened file should be <strong>closed</strong> by using the function <code class="docutils literal notranslate"><span class="pre">close()</span></code> before the end of the program, or the file could be unavailable to successive manipulations or for other programs.</p>
+</div>
+<p>There are other ways to read a text file, among which the use of the methods <code class="docutils literal notranslate"><span class="pre">read()</span></code> and <code class="docutils literal notranslate"><span class="pre">readlines()</span></code>, that would simplify the above function in:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/adams-hhgttg.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>However, these methods <strong>read the whole file at once</strong>, thus creating capacity/efficiency problems when working with big corpora.</p>
+<p>In the solution we adopt here the input file is read line by line, so that at any given moment <strong>only one line of text</strong> is loaded into memory.</p>
+<p>You can see all file object methods, including examples, on this W3schools page: <a class="reference external" href="https://www.w3schools.com/python/python_ref_file.asp">https://www.w3schools.com/python/python_ref_file.asp</a></p>
+</section>
+<section id="the-with-statement">
+<h3>The with statement<a class="headerlink" href="#the-with-statement" title="Permalink to this headline">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">with</span></code> statement is used to wrap the execution of a block of code.</p>
+<p>Using this construction to open files has three major advantages:</p>
+<ul class="simple">
+<li><p>there is no need to explicitly  close the file (the file is automatically closed as soon as the nested code exits)</p></li>
+<li><p>the file is closed automatically even when unhandled errors cause the program to crash</p></li>
+<li><p>the code is way clearer (it is trivial to identify where in the code a file is opened)</p></li>
+</ul>
+<p>Thus, you can  make it yourself a bit easier. Forget about the explicit <code class="docutils literal notranslate"><span class="pre">.close()</span></code> method. The code above can be rewritten as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/adams-hhgttg.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>  <span class="c1"># The file is opened</span>
+    
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    
+<span class="c1"># As soon as we exit the indented scope, the file is closed again </span>
+<span class="c1"># (and made available to other programs on your computer)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&quot;The Hitch Hiker&#39;s Guide to the Galaxy \n&quot;, &#39;\n&#39;, &#39;for Jonny Brock and Clare Gorst \n&#39;, &#39;and all other Arlingtoniansfor tea, sympathy, and a sofa\n&#39;, &#39;\n&#39;, &#39;\n&#39;, &#39;\n&#39;, &#39;Far out in the uncharted backwaters of the unfashionable  end  of\n&#39;, &#39;the  western  spiral  arm  of  the Galaxy lies a small unregarded\n&#39;, &#39;yellow sun.\n&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code in the indented with block is executed while the file is opened. It is automatically closed as the block is closed.</p>
+</section>
+<section id="tokenization-making-sense-of-text-files">
+<h3>Tokenization: Making sense of text files<a class="headerlink" href="#tokenization-making-sense-of-text-files" title="Permalink to this headline">#</a></h3>
+<p>When working in Media Studies or Linguistics, files that you want to process will very often be text files. We will learn more about this in notebook 5, but since we are already reading text files, here are a few basics.</p>
+<p>Python considers strings similar to a sequence of characters. However, as humans, we usually prefer to think of them as a sequence of words or sentences. The task of transforming a sequence of characters into a list of words (or other larger chunks) is called tokenization.</p>
+<p>Naively, we can say that words are delimited by spaces, and thus tokenize simply by splitting a string on spaces:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mytext</span> <span class="o">=</span> <span class="s2">&quot;A word is what is between spaces. That is all.&quot;</span>
+<span class="n">mytokens</span> <span class="o">=</span> <span class="n">mytext</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">mytokens</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;A&#39;, &#39;word&#39;, &#39;is&#39;, &#39;what&#39;, &#39;is&#39;, &#39;between&#39;, &#39;spaces.&#39;, &#39;That&#39;, &#39;is&#39;, &#39;all.&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, now we see that our list includes the word <code class="docutils literal notranslate"><span class="pre">spaces.</span></code>, with a period, and <code class="docutils literal notranslate"><span class="pre">all.</span></code> This is not exactly what we want. If you try fancier things involving punctuation, you also get problems with emoticons :-( or acronyms (F.B.I.). What you should know for now is that other people have already tried to solve these problems, and you can use an existing tokenizer from the NLTK (Natural Language Toolkit) module. It works like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">mytext</span> <span class="o">=</span> <span class="s2">&quot;A word is what is between spaces. That is all.&quot;</span>
+<span class="n">mytokens_nltk</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">mytext</span><span class="p">)</span>
+<span class="n">mytokens_nltk</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">mytext</span> <span class="o">=</span> <span class="s2">&quot;A word is what is between spaces. That is all.&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mytokens_nltk</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">mytext</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you are using Google Colab and try to run this, you probably get an error saying that some elements of NLTK were not found. Run the code below to download them into your Colab session and try again. You only need to do this once per session.</p>
+<p>If you are running Python on your laptop, you may have to install NLTK also, or download elements of it in the same way. You only need to do this once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [7],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also tokenize a text into sentences, as it is often useful to know which words are in the same sentence. This is easily done with NLTK also:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">mytext</span> <span class="o">=</span> <span class="s2">&quot;A word is what is between spaces. That is all.&quot;</span>
+<span class="n">mysenttokens_nltk</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">mytext</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentences:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mysenttokens_nltk</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Words:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">mysenttokens_nltk</span><span class="p">:</span>
+  <span class="n">mytokens_nltk</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">mytokens_nltk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">mytext</span> <span class="o">=</span> <span class="s2">&quot;A word is what is between spaces. That is all.&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mysenttokens_nltk</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">mytext</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we first tokenize by sentences and then by words here. Sentence tokenization returns a list of sentences (strings). However, the tokenize functions require strings, not lists. So, if we want to tokenize the sentences further into words, we need to loop through the list of sentences to tokenize each sentence separately.</p>
+<p>In notebook 5, you will see more of what NLTK offers for working with text.</p>
+</section>
+<section id="quiz">
+<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>You can call <code class="docutils literal notranslate"><span class="pre">.read()</span></code> on the file object.</p>
+</div>
+<ul class="simple">
+<li><p>Write one function that takes a file path as argument and prints statistics about the file, giving:</p>
+<ul>
+<li><p>The number of words (often called ‘tokens’)</p></li>
+<li><p>The number of unique words (often called ‘types’)</p></li>
+<li><p>The type:token ratio (i.e. unique words / words)</p></li>
+<li><p>The 10 most frequent words, including their frequencies</p></li>
+</ul>
+</li>
+<li><p>Write a normalization or cleaning function that takes a string as argument, that pre-processes this text and returns a normalized version, by removing/substituting:</p>
+<ul>
+<li><p>Uppercase characters</p></li>
+<li><p>Punctuation</p></li>
+</ul>
+</li>
+<li><p>Call the normalization function inside the first function</p></li>
+</ul>
+<p>Test the function on the filepath in <code class="docutils literal notranslate"><span class="pre">file_path</span></code> below. Compare the results from running the function with and without normalization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;data/adams-hhgttg.txt&#39;</span>
+
+<span class="c1">#Your code here</span>
+<span class="c1">#your_function_name(file_path)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;data/adams-hhgttg.txt&#39;</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="writing-files-repeated-from-notebook-2">
+<h2>Writing files (repeated from notebook 2)<a class="headerlink" href="#writing-files-repeated-from-notebook-2" title="Permalink to this headline">#</a></h2>
+<p>Writing an output file in Python has a structure that is close to that we’re used in our reading examples above. The main difference are:</p>
+<ul class="simple">
+<li><p>the specification of the <strong>mode</strong> <code class="docutils literal notranslate"><span class="pre">w</span></code></p></li>
+<li><p>the use of the function <code class="docutils literal notranslate"><span class="pre">write()</span></code> for each line of text</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Opening an <em>existing</em> file in <code class="docutils literal notranslate"><span class="pre">w</span></code> mode will erase its contents!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The folder you with to write the file to (&#39;stuff&#39; below) has to exist on the file system</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stuff/output-test-1.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;My name is:&quot;</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this code tries to write a file called “output-test-1.txt” to a directory called “stuff”. If you do not have a directory called “stuff”, it will give an error. Make a directory (folder) called “stuff” in your Colab file system or local file system in the same directory as the notebook, and try again.</p>
+<p>When writing line by line, it’s up to you to take care of the <strong>newlines</strong> by appending <code class="docutils literal notranslate"><span class="pre">\n</span></code> to each line. Unlike the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function, the <code class="docutils literal notranslate"><span class="pre">write()</span></code> function has no standard line-end character.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stuff/output-test-2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;My name is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Alexander&quot;</span><span class="p">)</span>
+    
+    
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;ééèèüAæøå&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can inspect the file we just created with the command line. The following is not Python, but a basic command line tool to print the contents of a file. At least on Mac, Linux and Google Colab, this works. Otherwise, just navigate to the file and open it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prepending a <code class="docutils literal notranslate"><span class="pre">!</span></code> to a command executes a program on your computer. Use it with care and don’t run such a cell in a notebook that you do not trust!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat stuff/output-test-2.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>My name is:
+AlexanderééèèüAæøå
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Quiz<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>Instead of printing the statistics in the previous quiz, write them to a file. For instance, use the file path in <code class="docutils literal notranslate"><span class="pre">file_path</span></code> to write the file to. Copy your function from above, rename it and add the required code to it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;stuff/adams-hhgttg-statistics.txt&#39;</span>
+
+<span class="c1"># your_adapted_function_that_writes_statistics(file_path)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="looping-through-folders-and-files-more-info">
+<h2>Looping through folders and files (more info)<a class="headerlink" href="#looping-through-folders-and-files-more-info" title="Permalink to this headline">#</a></h2>
+<p>If you want to load in multiple files in a folder, without explicitly providing the file pointers/paths for each file, you can also point to a folder. We can use the built-in <code class="docutils literal notranslate"><span class="pre">os</span></code> module to loop through a folder and load multiple files in memory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># You only have to do this once in your code. </span>
+           <span class="c1"># Always put this at the top of your file.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s2">&quot;data/gutenberg-extension&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;data/gutenberg-extension&#39;,
+  [],
+  [&#39;austen-pride.txt&#39;,
+   &#39;doyle-sherlock.txt&#39;,
+   &#39;shelley-frankestein.txt&#39;,
+   &#39;stoker-dracula.txt&#39;,
+   &#39;joyce-dubliners.txt&#39;,
+   &#39;README&#39;])]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gutenberg_books</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># Create an empty dictionary to store our data in</span>
+
+<span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s2">&quot;data/gutenberg-extension&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>  <span class="c1"># Why this?</span>
+            <span class="k">continue</span>
+        
+        <span class="c1"># You have to specify the full (relative) path, not only the file name.</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>  
+        
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+            <span class="n">gutenberg_books</span><span class="p">[</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gutenberg_books</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;austen-pride.txt&#39;, &#39;doyle-sherlock.txt&#39;, &#39;shelley-frankestein.txt&#39;, &#39;stoker-dracula.txt&#39;, &#39;joyce-dubliners.txt&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">os.walk()</span></code> method is convenient if you are dealing with a combination of files and folders, no matter how deep the hierarchy goes (folders in folders etc.). A simpler function is <code class="docutils literal notranslate"><span class="pre">os.listdir()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;data/gutenberg-extension/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;austen-pride.txt&#39;,
+ &#39;doyle-sherlock.txt&#39;,
+ &#39;shelley-frankestein.txt&#39;,
+ &#39;stoker-dracula.txt&#39;,
+ &#39;joyce-dubliners.txt&#39;,
+ &#39;README&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gutenberg_books</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># Create an empty dictionary to store our data in</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;data/gutenberg-extension&quot;</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>  <span class="c1"># Why this?</span>
+        <span class="k">continue</span>
+    
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+        <span class="n">gutenberg_books</span><span class="p">[</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gutenberg_books</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;austen-pride.txt&#39;, &#39;doyle-sherlock.txt&#39;, &#39;shelley-frankestein.txt&#39;, &#39;stoker-dracula.txt&#39;, &#39;joyce-dubliners.txt&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dictionary object now contains a lot of information: all the contents of all files. There’s a chance that your browser/notebook will crash when calling the dictionary here. Instead, let’s call a part of one of the books, the first 300 characters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gutenberg_books</span><span class="p">[</span><span class="s1">&#39;doyle-sherlock.txt&#39;</span><span class="p">][:</span><span class="mi">300</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[The Adventures of Sherlock Holmes by Arthur Conan Doyle]
+
+ADVENTURE I. A SCANDAL IN BOHEMIA
+
+I.
+
+To Sherlock Holmes she is always THE woman. I have seldom heard
+him mention her under any other name. In his eyes she eclipses
+and predominates the whole of her sex. It was not that he felt
+any emotion
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>Quiz<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Extend your code from the previous quiz to run on a whole directory of files. Instead of calling your file statistics function for a single file, write code that loops through all text files in the <em>data</em> directory and runs your file statistics function on each file in the directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;data/gutenberg-extension&#39;</span>
+
+<span class="c1">#Your code here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [22],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;data/gutenberg-extension&#39;</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nltk&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="reading-and-writing-data-in-json-and-csv">
+<h1>Reading and writing data in JSON and CSV<a class="headerlink" href="#reading-and-writing-data-in-json-and-csv" title="Permalink to this headline">#</a></h1>
+<p>We now know how we can read and write textual content to files on our file system. Two more structed and common data formats to store data in are JSON and CSV. If you are not familiar with these, take a look at:</p>
+<ul class="simple">
+<li><p>JSON (<a class="reference external" href="https://www.w3schools.com/whatis/whatis_json.asp">https://www.w3schools.com/whatis/whatis_json.asp</a>)</p></li>
+<li><p>CSV (<a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/</a>)</p></li>
+</ul>
+<section id="json">
+<h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">#</a></h2>
+<p>The syntax of JSON is very similar to the syntax of <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">dict</span></code> data types in Python.</p>
+<p>The following data (excerpt) is taken from the data that feeds the Instagram page of the UvA (<a class="reference external" href="https://www.instagram.com/uva_amsterdam/">https://www.instagram.com/uva_amsterdam/</a>). The API/service of Instagram returns web data in JSON that is used by your browser to show you a page with content. You can also find this when inspecting the source of the page.</p>
+<p>A JSON file (named <code class="docutils literal notranslate"><span class="pre">example.json</span></code>) that looks like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;biography&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Welcome to the UvA \u274c\u274c\u274c \nFind out more about our:\n\ud83c\udfdb campuses \ud83c\udf93 education \ud83d\udd0e research\nShare your \ud83d\udcf8 using: #uva_amsterdam\nQuestions? Contact us:&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;blocked_by_viewer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;restricted_by_viewer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;country_block&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;external_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://linkin.bio/uva_amsterdam&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;external_url_linkshimmed&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://l.instagram.com/?u=https%3A%2F%2Flinkin.bio%2Fuva_amsterdam\u0026e=ATOBo7L11uPBpsMfd6-pFnoBRaF3T-6ovlD9Blc2q1LGUjnmyuGutPfuK-ib70Bt_YmGu6cDNCX1Y1lC\u0026s=1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;edge_followed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42241</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;fbid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;17841401222133463&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;followed_by_viewer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;edge_follow&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">362</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;follows_viewer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;full_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UvA: University of Amsterdam&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1501672737&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;is_business_account&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;is_joined_recently&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;business_category_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Professional Services&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;overall_category_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;category_enum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UNIVERSITY&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;category_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;profile_pic_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://scontent-amt2-1.cdninstagram.com/v/t51.2885-19/s150x150/117066908_1128864954173821_2797787766361156925_n.jpg?_nc_ht=scontent-amt2-1.cdninstagram.com\u0026_nc_ohc=PXsEzg-CKaUAX8dEtNL\u0026tp=1\u0026oh=86bb46d8006b77db2037955187e69de1\u0026oe=6056619F&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uva_amsterdam&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;connected_fb_page&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Can be loaded into Python as a dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;biography&#39;</span><span class="p">:</span> <span class="s1">&#39;Welcome to the UvA ❌❌❌ </span><span class="se">\n</span><span class="s1">Find out more about our:</span><span class="se">\n</span><span class="s1">🏛 campuses 🎓 education 🔎 research</span><span class="se">\n</span><span class="s1">Share your 📸 using: #uva_amsterdam</span><span class="se">\n</span><span class="s1">Questions? Contact us:&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;blocked_by_viewer&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+     <span class="s1">&#39;restricted_by_viewer&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+     <span class="s1">&#39;country_block&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+     <span class="s1">&#39;external_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://linkin.bio/uva_amsterdam&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;external_url_linkshimmed&#39;</span><span class="p">:</span> <span class="s1">&#39;https://l.instagram.com/?u=https%3A</span><span class="si">%2F%2F</span><span class="s1">linkin.bio</span><span class="si">%2F</span><span class="s1">uva_amsterdam&amp;e=ATOBo7L11uPBpsMfd6-pFnoBRaF3T-6ovlD9Blc2q1LGUjnmyuGutPfuK-ib70Bt_YmGu6cDNCX1Y1lC&amp;s=1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;edge_followed_by&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="mi">42241</span><span class="p">},</span>
+     <span class="s1">&#39;fbid&#39;</span><span class="p">:</span> <span class="s1">&#39;17841401222133463&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;followed_by_viewer&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+     <span class="s1">&#39;edge_follow&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="mi">362</span><span class="p">},</span>
+     <span class="s1">&#39;follows_viewer&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+     <span class="s1">&#39;full_name&#39;</span><span class="p">:</span> <span class="s1">&#39;UvA: University of Amsterdam&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1501672737&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;is_business_account&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+     <span class="s1">&#39;is_joined_recently&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+     <span class="s1">&#39;business_category_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Professional Services&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;overall_category_name&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+     <span class="s1">&#39;category_enum&#39;</span><span class="p">:</span> <span class="s1">&#39;UNIVERSITY&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;category_name&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+     <span class="s1">&#39;profile_pic_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://scontent-amt2-1.cdninstagram.com/v/t51.2885-19/s150x150/117066908_1128864954173821_2797787766361156925_n.jpg?_nc_ht=scontent-amt2-1.cdninstagram.com&amp;_nc_ohc=PXsEzg-CKaUAX8dEtNL&amp;tp=1&amp;oh=86bb46d8006b77db2037955187e69de1&amp;oe=6056619F&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;uva_amsterdam&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;connected_fb_page&#39;</span><span class="p">:</span> <span class="kc">None</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The main differences between dictionaries in Python and the JSON file notation are:</p>
+<ul class="simple">
+<li><p>Python dictionaries exist in memory in Python, they are an abstract datatype. JSON is a data format and can be saved on your computer, or be transmitted as string (e.g. for a website request, sending data).</p></li>
+<li><p>Keys in JSON can only be of type string. This means that writing a Python dictionary with integers as keys will transform them to string. Reading back the file will therefore give you a Python dictionary with strings as keys.</p></li>
+<li><p>All non-ascii characters are escape sequences (e.g. <code class="docutils literal notranslate"><span class="pre">\u274c</span></code>) for ❌. This is the same for letters with diacritics (e.g. é, ê, ç, ñ). If all characters are escaped this way, you don’t have to specify an encoding when opening json files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> are lowercased: <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>. <code class="docutils literal notranslate"><span class="pre">None</span></code> is <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p></li>
+<li><p>JSON only allows double quotes for its “strings”.</p></li>
+</ul>
+<p>The built-in json module of Python needs to be imported first, to work with json files and notation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s read a json file from our disk using <code class="docutils literal notranslate"><span class="pre">json.load()</span></code>. The file comes from the public API of the municipality of Amsterdam to look up information on houses by searching on street name and house number. See: <a class="reference external" href="https://api.data.amsterdam.nl/atlas/search/adres/">https://api.data.amsterdam.nl/atlas/search/adres/</a>. Most often, information from such API’s or ‘REST-services’ is given back in JSON.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/bg1.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonfile</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we can inspect the loaded data as a Python dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;dict&#39;&gt;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_links&#39;: {&#39;self&#39;: {&#39;href&#39;: &#39;https://api.data.amsterdam.nl/atlas/search/adres/?format=json&amp;q=Turfdraagsterpad%209&amp;page=1&#39;},
+  &#39;next&#39;: {&#39;href&#39;: None},
+  &#39;prev&#39;: {&#39;href&#39;: None}},
+ &#39;count_hits&#39;: 1,
+ &#39;count&#39;: 1,
+ &#39;results&#39;: [{&#39;_links&#39;: {&#39;self&#39;: {&#39;href&#39;: &#39;https://api.data.amsterdam.nl/bag/v1.1/verblijfsobject/0363010000927863/?format=json&#39;}},
+   &#39;type&#39;: &#39;verblijfsobject&#39;,
+   &#39;dataset&#39;: &#39;v11_nummeraanduiding&#39;,
+   &#39;adres&#39;: &#39;Turfdraagsterpad 9&#39;,
+   &#39;postcode&#39;: &#39;1012XT&#39;,
+   &#39;straatnaam&#39;: &#39;Turfdraagsterpad&#39;,
+   &#39;straatnaam_no_ws&#39;: &#39;Turfdraagsterpad&#39;,
+   &#39;huisnummer&#39;: 9,
+   &#39;toevoeging&#39;: &#39;9&#39;,
+   &#39;bag_huisletter&#39;: &#39;&#39;,
+   &#39;bag_toevoeging&#39;: &#39;&#39;,
+   &#39;woonplaats&#39;: &#39;Amsterdam&#39;,
+   &#39;type_adres&#39;: &#39;Hoofdadres&#39;,
+   &#39;status&#39;: &#39;Naamgeving uitgegeven&#39;,
+   &#39;landelijk_id&#39;: &#39;0363200000385647&#39;,
+   &#39;vbo_status&#39;: &#39;Verblijfsobject in gebruik&#39;,
+   &#39;adresseerbaar_object_id&#39;: &#39;0363010000927863&#39;,
+   &#39;subtype&#39;: &#39;verblijfsobject&#39;,
+   &#39;centroid&#39;: [4.893589100625236, 52.36899593318145],
+   &#39;subtype_id&#39;: &#39;0363010000927863&#39;,
+   &#39;_display&#39;: &#39;Turfdraagsterpad 9&#39;}]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_links&#39;: {&#39;self&#39;: {&#39;href&#39;: &#39;https://api.data.amsterdam.nl/atlas/search/adres/?format=json&amp;q=Turfdraagsterpad%209&amp;page=1&#39;},
+  &#39;next&#39;: {&#39;href&#39;: None},
+  &#39;prev&#39;: {&#39;href&#39;: None}},
+ &#39;count_hits&#39;: 1,
+ &#39;count&#39;: 1,
+ &#39;results&#39;: [{&#39;_links&#39;: {&#39;self&#39;: {&#39;href&#39;: &#39;https://api.data.amsterdam.nl/bag/v1.1/verblijfsobject/0363010000927863/?format=json&#39;}},
+   &#39;type&#39;: &#39;verblijfsobject&#39;,
+   &#39;dataset&#39;: &#39;v11_nummeraanduiding&#39;,
+   &#39;adres&#39;: &#39;Turfdraagsterpad 9&#39;,
+   &#39;postcode&#39;: &#39;1012XT&#39;,
+   &#39;straatnaam&#39;: &#39;Turfdraagsterpad&#39;,
+   &#39;straatnaam_no_ws&#39;: &#39;Turfdraagsterpad&#39;,
+   &#39;huisnummer&#39;: 9,
+   &#39;toevoeging&#39;: &#39;9&#39;,
+   &#39;bag_huisletter&#39;: &#39;&#39;,
+   &#39;bag_toevoeging&#39;: &#39;&#39;,
+   &#39;woonplaats&#39;: &#39;Amsterdam&#39;,
+   &#39;type_adres&#39;: &#39;Hoofdadres&#39;,
+   &#39;status&#39;: &#39;Naamgeving uitgegeven&#39;,
+   &#39;landelijk_id&#39;: &#39;0363200000385647&#39;,
+   &#39;vbo_status&#39;: &#39;Verblijfsobject in gebruik&#39;,
+   &#39;adresseerbaar_object_id&#39;: &#39;0363010000927863&#39;,
+   &#39;subtype&#39;: &#39;verblijfsobject&#39;,
+   &#39;centroid&#39;: [4.893589100625236, 52.36899593318145],
+   &#39;subtype_id&#39;: &#39;0363010000927863&#39;,
+   &#39;_display&#39;: &#39;Turfdraagsterpad 9&#39;}]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we are only interested in the information on the building, we can take out that part to store it separately. This is the first dictionary element in the list that can be found under key <code class="docutils literal notranslate"><span class="pre">data['results']</span></code>. The rest of the information is feedback from the API, telling us that there is 1 hit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_selection</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Delete all keys starting with an _underscore</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">data_selection</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">data_selection</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+<span class="n">data_selection</span>
+<span class="c1"># print(type(data_selection))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;verblijfsobject&#39;,
+ &#39;dataset&#39;: &#39;v11_nummeraanduiding&#39;,
+ &#39;adres&#39;: &#39;Turfdraagsterpad 9&#39;,
+ &#39;postcode&#39;: &#39;1012XT&#39;,
+ &#39;straatnaam&#39;: &#39;Turfdraagsterpad&#39;,
+ &#39;straatnaam_no_ws&#39;: &#39;Turfdraagsterpad&#39;,
+ &#39;huisnummer&#39;: 9,
+ &#39;toevoeging&#39;: &#39;9&#39;,
+ &#39;bag_huisletter&#39;: &#39;&#39;,
+ &#39;bag_toevoeging&#39;: &#39;&#39;,
+ &#39;woonplaats&#39;: &#39;Amsterdam&#39;,
+ &#39;type_adres&#39;: &#39;Hoofdadres&#39;,
+ &#39;status&#39;: &#39;Naamgeving uitgegeven&#39;,
+ &#39;landelijk_id&#39;: &#39;0363200000385647&#39;,
+ &#39;vbo_status&#39;: &#39;Verblijfsobject in gebruik&#39;,
+ &#39;adresseerbaar_object_id&#39;: &#39;0363010000927863&#39;,
+ &#39;subtype&#39;: &#39;verblijfsobject&#39;,
+ &#39;centroid&#39;: [4.893589100625236, 52.36899593318145],
+ &#39;subtype_id&#39;: &#39;0363010000927863&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, save it back to a json file using <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;stuff/bg1-selection.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data_selection</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>Quiz<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Modify that function you previously built to generate statistics for a file once more so that it returns a python dictionary with these statistics.</p></li>
+<li><p>Write a function that uses the <code class="docutils literal notranslate"><span class="pre">os.walk()</span></code> or <code class="docutils literal notranslate"><span class="pre">os.listdir()</span></code> method to run the file statistics function over every file in a folder. Create a dictionary that takes the file name as key, and the returned statistics dictionary as value.</p></li>
+<li><p>Also add arguments for a <code class="docutils literal notranslate"><span class="pre">target_file_path</span></code>, and a <code class="docutils literal notranslate"><span class="pre">data</span></code> dictionary to that function. Use the <code class="docutils literal notranslate"><span class="pre">json.dump()</span></code> method to write the dictionary to the provided file path using a with statement.</p></li>
+<li><p>Inspect the file by opening it on your computer with a text editor of some sorts. Find a way to make it ‘pretty printed’ (e.g. with <em>indents</em>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+
+<span class="n">source_folder</span> <span class="o">=</span> <span class="s2">&quot;data/gutenberg-extension&quot;</span>
+<span class="n">target_file_path</span> <span class="o">=</span> <span class="s2">&quot;stuff/gutenberg-statistics.json&quot;</span>
+
+<span class="k">def</span> <span class="nf">your_modified_statistics_function</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="c1"># Your code</span>
+    
+    <span class="k">return</span> <span class="n">statistics_dict</span>
+
+<span class="k">def</span> <span class="nf">your_functions_here</span><span class="p">():</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h1>
+<section id="exercise-1-previously-exercise-6-in-notebook-2">
+<h2>Exercise 1 (previously Exercise 6 in Notebook 2)<a class="headerlink" href="#exercise-1-previously-exercise-6-in-notebook-2" title="Permalink to this headline">#</a></h2>
+<p>Read the file <code class="docutils literal notranslate"><span class="pre">data/adams-hhgttg.txt</span></code> and:</p>
+<ul class="simple">
+<li><p>Count the number of lines in the file</p></li>
+<li><p>Count the number of non-empty lines</p></li>
+<li><p>Read each line of the input file, remove its newline character and write it to file <code class="docutils literal notranslate"><span class="pre">stuff/adams-output.txt</span></code></p></li>
+<li><p>Compute the average number of alphanumeric characters per line</p></li>
+<li><p>Identify all the unique words used in the text (no duplicates!) and write them in a text file called <code class="docutils literal notranslate"><span class="pre">stuff/lexicon.txt</span></code> (one word per line)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;stuff/lexicon.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">infile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;something&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h2>
+<p>TBD</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./myst-notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="2_InputOutput.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python basics 2 + Input / Output</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="4_PandasDataWrangling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Wrangling</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joy Crosbie, Nils Peters<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
