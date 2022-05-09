@@ -1,0 +1,104 @@
+{
+    "austen-pride.txt": {
+        "n_words": 121567,
+        "n_unique": 13058,
+        "TTR": 0.10741401860702329,
+        "MFW": [
+            "to",
+            "the",
+            "of",
+            "and",
+            "a",
+            "her",
+            "was",
+            "in",
+            "I",
+            "that"
+        ]
+    },
+    "doyle-sherlock.txt": {
+        "n_words": 104419,
+        "n_unique": 14631,
+        "TTR": 0.14011817772627588,
+        "MFW": [
+            "the",
+            "and",
+            "to",
+            "of",
+            "I",
+            "a",
+            "in",
+            "that",
+            "was",
+            "his"
+        ]
+    },
+    "shelley-frankestein.txt": {
+        "n_words": 74948,
+        "n_unique": 11602,
+        "TTR": 0.15480066179217591,
+        "MFW": [
+            "the",
+            "and",
+            "I",
+            "of",
+            "to",
+            "my",
+            "a",
+            "in",
+            "was",
+            "that"
+        ]
+    },
+    "stoker-dracula.txt": {
+        "n_words": 160816,
+        "n_unique": 18304,
+        "TTR": 0.1138195204457268,
+        "MFW": [
+            "the",
+            "and",
+            "I",
+            "to",
+            "of",
+            "a",
+            "in",
+            "that",
+            "he",
+            "was"
+        ]
+    },
+    "joyce-dubliners.txt": {
+        "n_words": 67525,
+        "n_unique": 11876,
+        "TTR": 0.1758756016290263,
+        "MFW": [
+            "the",
+            "and",
+            "of",
+            "to",
+            "a",
+            "was",
+            "his",
+            "he",
+            "in",
+            "had"
+        ]
+    },
+    "README": {
+        "n_words": 55,
+        "n_unique": 45,
+        "TTR": 0.8181818181818182,
+        "MFW": [
+            "*",
+            "the",
+            "Project",
+            "This",
+            "corpus",
+            "from",
+            "Gutenberg",
+            "Extension",
+            "http://gutenberg.net/",
+            "contains"
+        ]
+    }
+}

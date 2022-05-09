@@ -1,0 +1,24 @@
+{
+    "type": "verblijfsobject",
+    "dataset": "v11_nummeraanduiding",
+    "adres": "Turfdraagsterpad 9",
+    "postcode": "1012XT",
+    "straatnaam": "Turfdraagsterpad",
+    "straatnaam_no_ws": "Turfdraagsterpad",
+    "huisnummer": 9,
+    "toevoeging": "9",
+    "bag_huisletter": "",
+    "bag_toevoeging": "",
+    "woonplaats": "Amsterdam",
+    "type_adres": "Hoofdadres",
+    "status": "Naamgeving uitgegeven",
+    "landelijk_id": "0363200000385647",
+    "vbo_status": "Verblijfsobject in gebruik",
+    "adresseerbaar_object_id": "0363010000927863",
+    "subtype": "verblijfsobject",
+    "centroid": [
+        4.893589100625236,
+        52.36899593318145
+    ],
+    "subtype_id": "0363010000927863"
+}

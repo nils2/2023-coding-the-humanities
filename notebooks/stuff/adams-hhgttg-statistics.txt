@@ -1,0 +1,13 @@
+Number of words:47085
+Number of unique words:9566
+TTR:0.20316448975257512
+Frequencies:	the(2211)
+	of(1245)
+	to(1155)
+	a(1110)
+	and(1092)
+	was(591)
+	in(568)
+	he(542)
+	said(504)
+	it(475)
